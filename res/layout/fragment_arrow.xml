@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.testwebview.ArrowFragment" >
+
+   
+
+        <RelativeLayout
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:id="@+id/addArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="@string/Ajouter" />
+			<Button
+                android:id="@+id/editArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:layout_centerHorizontal="true"
+                android:text="@string/Edit" />
+
+            <Button
+                android:id="@+id/deleteArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/Effacer" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listarrow"
+            android:layout_below="@id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >   
+          
+
+         </ListView>
+    
+
+</RelativeLayout>

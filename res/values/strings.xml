@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Arc Lat\'Védas</string>
+    <string name="title_page_detail">Page Détail</string>
+    <string name="title_activity_materiel">Matériel</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_materiel_global">MaterielGlobalActivity</string>
+    <string name="title_activity_materiel_list2">MaterielList2</string>
+     <string name="title_activity_distance">Distance</string>
+    <string name="title_activity_tir">Tirs et compétitions</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrows">Flèches</string>
+    <string name="nomfleche">nom</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="length">Taille</string>
+    <string name="spin">Spin</string>
+    <string name="feather">Plume</string>
+    <string name="point">Pointe</string>
+    <string name="comment">Comment</string>
+    <string name="Ajouter">Ajouter</string>
+    <string name="Effacer">Effacer</string>
+    <string name="distance">Distance</string>
+    <string name="name">Nom</string>
+    <string name="unit">Unit</string>
+    <string name="_12">12</string>
+    <string name="Edit">Éditer</string>
+    <string name="materiel">Matériel</string>
+    <string name="sn">SN/</string>
+    <string name="Tir">Tir</string>
+    <string name="localisation">Localisation</string>
+    <string name="date">Date</string>
+    <string name="voir">Voir</string>
+    <string name="scores">scores</string>
+    
+    
+</resources>

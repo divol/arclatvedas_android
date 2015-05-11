@@ -1,0 +1,149 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ListView
+        android:id="@+id/listVolees"
+        android:layout_width="fill_parent"
+        android:layout_height="264dp" >
+    </ListView>
+ 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/listVolees"
+        android:paddingTop="10dp" >
+
+        <Button
+            android:id="@+id/buttonRetour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Description" />
+
+        <LinearLayout
+            android:id="@+id/ligne1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <Button
+                 android:id="@+id/button8"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="8" />
+
+            <Button
+                 android:id="@+id/button9"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="9" />
+
+            <Button
+                 android:id="@+id/button10"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="10" />
+
+            <Button
+                 android:id="@+id/buttonx"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="X" />
+
+            <Button
+                android:id="@+id/buttonmoins"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ligne2"
+            android:layout_width="match_parent"
+              android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ligne1" >
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/buttonok"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="OK" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ligne3"
+            android:layout_width="match_parent"
+              android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/ligne2" >
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/button0"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="0" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/buttonRetour"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingRight="10dp"
+            android:text="712"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
