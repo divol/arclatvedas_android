@@ -3,5 +3,5 @@
     android:id="@+id/page_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.testwebview.PageDetailActivity"
+    tools:context="com.alv.app.PageDetailActivity"
     tools:ignore="MergeRootFrame" />

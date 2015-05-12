@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.testwebview"
+    package="com.alv.app"
     android:versionCode="1"
     android:versionName="1.0" >
     <uses-feature android:name="android.hardware.camera" android:required="false" />
@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashScreen"
+            android:name="com.alv.app.SplashScreen"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -30,51 +30,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PageListActivity"
+            android:name="com.alv.app.PageListActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".PageDetailActivity"
+            android:name="com.alv.app.PageDetailActivity"
             android:label="@string/title_page_detail"
-            android:parentActivityName=".PageListActivity" >
+            android:parentActivityName="com.alv.app.PageListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.testwebview.PageListActivity" />
         </activity>
         <activity
-            android:name=".MaterielListActivity"
+            android:name="com.alv.app.MaterielListActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_materiel"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".MaterielGlobalActivity"
+            android:name="com.alv.app.MaterielGlobalActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_materiel_global"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".MaterielList2"
+            android:name="com.alv.app.MaterielList2"
             android:configChanges="orientation"
             android:label="@string/title_activity_materiel_list2"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".DistanceActivity"
+            android:name="com.alv.app.DistanceActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_distance"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".TirActivity"
+            android:name="com.alv.app.TirActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_tir"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".TirEditDialog"
+            android:name="com.alv.app.TirEditDialog"
             android:configChanges="orientation"
             android:label="@string/title_activity_tir"
             android:screenOrientation="portrait"

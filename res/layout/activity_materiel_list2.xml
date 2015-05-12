@@ -3,5 +3,5 @@
     android:id="@+id/containerList2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.testwebview.MaterielList2"
+    tools:context="com.alv.app.MaterielList2"
     tools:ignore="MergeRootFrame" />

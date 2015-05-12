@@ -3,7 +3,7 @@
     android:id="@+id/tireditdialog"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.testwebview.TirEditDialog"
+    tools:context="com.alv.app.TirEditDialog"
     tools:ignore="MergeRootFrame">
 
     
@@ -15,13 +15,13 @@
 
         <fragment 
             android:id="@+id/flip1"
-            class="com.example.testwebview.TirEditFragment"
+            class="com.alv.app.TirEditFragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
 
         <fragment 
             android:id="@+id/flip2"
-            class="com.example.testwebview.VoleeEditFragment"
+            class="com.alv.app.VoleeEditFragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
         
