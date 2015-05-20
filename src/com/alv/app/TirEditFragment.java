@@ -87,7 +87,10 @@ public class TirEditFragment extends Fragment implements OnClickListener,OnItemS
 	     b = (Button) baseview.findViewById(R.id.VoirButton);
 	     b.setOnClickListener(this);
 	     
-
+	     b = (Button) baseview.findViewById(R.id.VoirGraph);
+	     b.setOnClickListener(this);
+	     
+	     
 	   //EditTextLocation
 	   //EditTextDate
 	   //spinnerDistance
@@ -156,6 +159,12 @@ public class TirEditFragment extends Fragment implements OnClickListener,OnItemS
 			 parenta.goUp(Activity.RESULT_OK,mParam1);
 			 break;
 			 
+		 case R.id.VoirGraph:
+			 TirEditDialog parent2 = (TirEditDialog) getActivity();
+			 parent2.showGraphFragment();
+
+		 break;
+		 
 		 case R.id.VoirButton:
 			 
 //				FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();

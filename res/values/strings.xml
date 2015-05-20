@@ -37,6 +37,10 @@
     <string name="date">Date</string>
     <string name="voir">Voir</string>
     <string name="scores">scores</string>
+    <string name="graph">graph</string>
+    <string name="graphique">graphique</string>
+    <string name="title_activity_tir_graph">graphique</string>
+    
     
     
 </resources>

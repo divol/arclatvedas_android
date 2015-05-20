@@ -73,6 +73,15 @@
             android:label="@string/title_activity_tir"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="com.alv.app.TirGraphActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_tir_graph"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+                
         <activity
             android:name="com.alv.app.TirEditDialog"
             android:configChanges="orientation"

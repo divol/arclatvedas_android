@@ -67,7 +67,7 @@ public class PageListActivity extends FragmentActivity
     		case 1:
     		case 2:
     		case 3:
-    		case 7:
+    		case 8:
 	        if (mTwoPane) {
 	            // In two-pane mode, show the detail view in this activity by
 	            // adding or replacing the detail fragment using a
@@ -157,6 +157,31 @@ public class PageListActivity extends FragmentActivity
     			
     			
     			break;
+    			
+    		case 7:
+    			
+    			
+    			if (mTwoPane) {
+		            // In two-pane mode, show the detail view in this activity by
+		            // adding or replacing the detail fragment using a
+		            // fragment transaction.
+		           
+    				TirGraphFragment frag = new TirGraphFragment();
+		            getSupportFragmentManager().beginTransaction()
+		                    .replace(R.id.fragcontainerList2, frag)
+		                    .commit();
+		
+		        } else {
+		            // In single-pane mode, simply start the detail activity
+		            // for the selected item ID.
+		            Intent detailIntent = new Intent(this, TirGraphActivity.class);
+		            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
+		            startActivity(detailIntent);
+		        }
+    			
+    			
+    	        
+
     	}
     }
 }

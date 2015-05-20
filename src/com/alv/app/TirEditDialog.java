@@ -59,6 +59,14 @@ public class TirEditDialog extends FragmentActivity{
 		flipper.showPrevious();
 	}
 
+	public void showFirstFragment() {
+		flipper.setDisplayedChild(0);
+	}
+	public void showGraphFragment(){
+		
+		flipper.setDisplayedChild(2);
+		
+	}
 	public void goUp(int resultCode){
 		setResult(resultCode);
    	 	finish();

@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/graphTir"
+    android:background="@color/grey_light" >
+
+ <com.github.mikephil.charting.charts.LineChart
+     android:id="@+id/chart"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:layout_above="@id/buttonRetour" />
+ 
+     <Button
+            android:id="@+id/buttonRetour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/ok" />
+     
+</RelativeLayout>

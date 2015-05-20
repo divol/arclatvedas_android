@@ -1,10 +1,7 @@
 package com.alv.db.tir;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import com.alv.db.distance.DistanceSQLiteOpenHelper;
-import com.alv.db.distance.Hausse;
 
 import android.content.ContentValues;
 import android.os.Parcel;

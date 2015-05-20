@@ -25,6 +25,11 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
         
+         <fragment 
+            android:id="@+id/flip3"
+            class="com.alv.app.VoleeGraphFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
     </ViewFlipper>
     
      
