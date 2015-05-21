@@ -43,18 +43,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.testwebview.PageListActivity" />
         </activity>
-        <activity
-            android:name="com.alv.app.MaterielListActivity"
-            android:configChanges="orientation"
-            android:label="@string/title_activity_materiel"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.alv.app.MaterielGlobalActivity"
-            android:configChanges="orientation"
-            android:label="@string/title_activity_materiel_global"
-            android:screenOrientation="portrait" >
-        </activity>
+       
         <activity
             android:name="com.alv.app.MaterielList2"
             android:configChanges="orientation"
