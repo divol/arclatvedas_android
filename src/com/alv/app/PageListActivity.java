@@ -1,6 +1,7 @@
 package com.alv.app;
 
 import com.alv.app.R;
+import com.alv.app.cropcircles.CircleView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -67,7 +68,7 @@ public class PageListActivity extends FragmentActivity
     		case 1:
     		case 2:
     		case 3:
-    		case 8:
+    		case 9:
 	        if (mTwoPane) {
 	            // In two-pane mode, show the detail view in this activity by
 	            // adding or replacing the detail fragment using a
@@ -157,8 +158,17 @@ public class PageListActivity extends FragmentActivity
     			
     			
     			break;
+    		
     			
     		case 7:
+    			
+    			
+	            Intent detailIntentCircle = new Intent(this, CircleView.class);
+	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
+	            startActivity(detailIntentCircle);
+
+	            break;
+    		case 8:
     			
     			
     			if (mTwoPane) {

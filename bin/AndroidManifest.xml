@@ -78,6 +78,16 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        
+        
+        <activity
+            android:name="com.alv.app.cropcircles.CircleView"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_Circle"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        
     </application>
 
 </manifest>
