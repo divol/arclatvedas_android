@@ -3,10 +3,10 @@
     android:id="@+id/activityCircleView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alv.app.cropcircles.CircleView"
+    tools:context="com.alv.app.cropcircles.BlasonActivity"
     tools:ignore="MergeRootFrame" >
 
-    <ImageView
+    <com.alv.app.cropcircles.BlasonView
         android:id="@+id/DrawingImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

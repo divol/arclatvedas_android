@@ -1,7 +1,7 @@
 package com.alv.app;
 
 import com.alv.app.R;
-import com.alv.app.cropcircles.CircleView;
+import com.alv.app.cropcircles.BlasonActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -163,7 +163,7 @@ public class PageListActivity extends FragmentActivity
     		case 7:
     			
     			
-	            Intent detailIntentCircle = new Intent(this, CircleView.class);
+	            Intent detailIntentCircle = new Intent(this, BlasonActivity.class);
 	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
 	            startActivity(detailIntentCircle);
 

@@ -81,7 +81,7 @@
         
         
         <activity
-            android:name="com.alv.app.cropcircles.CircleView"
+            android:name="com.alv.app.cropcircles.BlasonActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_Circle"
             android:screenOrientation="portrait" >
