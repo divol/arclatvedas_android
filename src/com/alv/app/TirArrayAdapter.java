@@ -3,26 +3,35 @@ package com.alv.app;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.alv.db.tir.Tir;
 import com.alv.app.R;
+import com.alv.app.cropcircles.BlasonActivity;
 
-public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdapterInterface{
+import android.view.View.OnClickListener;
+import com.alv.app.cropcircles.BlasonActivity;
+
+public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdapterInterface,OnClickListener{
 	 private final Context context;
 	  private final  List<Tir> values;
 	  private  int selection;
-	
-	 public TirArrayAdapter(Context context, List<Tir>  values) {
+	private View rowView;
+	DataFragment<Tir> fragment;
+	 public TirArrayAdapter(Context context, List<Tir>  values, DataFragment<Tir> fragment) {
 		    super(context, R.layout.tir_row_layout, values);
 		    this.context = context;
 		    this.values = values;
 		    this.selection=-1;
+		    this.fragment = fragment;
 		  }
 	 
 	 
@@ -32,7 +41,7 @@ public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdap
 	    LayoutInflater inflater = (LayoutInflater) context
 	        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    
-	    View rowView = convertView;
+	     rowView = convertView;
 	    if (rowView == null)
 	     rowView = inflater.inflate(R.layout.tir_row_layout, parent, false);
 	    
@@ -59,6 +68,9 @@ public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdap
 	    	cb.setChecked(false);
 	    }
 
+	    Button blasonButton = (Button)rowView.findViewById(R.id.blasonButton);
+	    blasonButton.setTag(values.get(position));
+	    blasonButton.setOnClickListener(this);
 	    return rowView;
 	  }
 	 
@@ -83,5 +95,28 @@ public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdap
 			  this.selection=-1;
 		  }
 	  }
+
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.blasonButton:
+			
+// 			 Intent detailIntentCircle = new Intent(this.context, BlasonActivity.class);
+//	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
+// 			this.context.startActivity(detailIntentCircle);
+			
+ 	        Intent intent=new Intent(this.context, BlasonActivity.class);
+ 	      
+ 	        intent.putExtra(TirEditDialog.ARG_ITEM_ID,(Tir)  v.getTag());
+ 	       fragment.startActivityForResult(intent,TirFragment.SAVETIR); 
+
+	        
+	        
+			break;
+		}
+		
+	}
 
 }

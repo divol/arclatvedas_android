@@ -2,6 +2,7 @@ package com.alv.db;
 
 import java.util.List;
 
+import com.alv.app.DataFragment;
 import com.alv.db.arrow.Arrow;
 
 import android.content.Context;
@@ -32,6 +33,7 @@ public abstract class DataSourceBase<T> {
 	public abstract void delete(T data);
 	public abstract List<T> getAll();
 	
-	public abstract ArrayAdapter<T> getAdapter(Context context, List<T>  values);
+	public abstract ArrayAdapter<T> getAdapter(Context context, List<T>  values, DataFragment<T> frag);
+	
 	public abstract  T getTestValue();
 }

@@ -8,8 +8,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.widget.ArrayAdapter;
 
+import com.alv.app.DataFragment;
 import com.alv.app.MaterielArrayAdapter;
 import com.alv.db.DataSourceBase;
+import com.alv.db.distance.Distance;
 
 
 
@@ -94,7 +96,7 @@ public class MaterielDataSource extends DataSourceBase<Materiel>{
 	  }
 	  
 	  
-	  public  ArrayAdapter<Materiel> getAdapter(Context context, List<Materiel>  values){
+	  public  ArrayAdapter<Materiel> getAdapter(Context context, List<Materiel>  values,DataFragment<Materiel> fragment){
 		  return new MaterielArrayAdapter(context,values );
 	  }
 	  

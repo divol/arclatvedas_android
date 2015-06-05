@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.widget.ArrayAdapter;
 
+import com.alv.app.DataFragment;
 import com.alv.app.TirArrayAdapter;
 import com.alv.db.DataSourceBase;
 
@@ -26,7 +27,8 @@ public class TirDataSource extends DataSourceBase<Tir>{
 
 	  private String[] allColumnsScore = {TirSQLiteOpenHelper.COLUMN_SCORE_ID,
 			  TirSQLiteOpenHelper.COLUMN_SCORE_IDTIR	,
-			  TirSQLiteOpenHelper.COLUMN_SCORE_FLY};
+			  TirSQLiteOpenHelper.COLUMN_SCORE_FLY,
+			  TirSQLiteOpenHelper.COLUMN_SCORE_POINTS};
 	  
 	public TirDataSource(Context context) {
 		super(context);
@@ -115,9 +117,9 @@ public class TirDataSource extends DataSourceBase<Tir>{
 
 	
 	@Override
-	public ArrayAdapter<Tir> getAdapter(Context context, List<Tir> values) {
+	public ArrayAdapter<Tir> getAdapter(Context context, List<Tir> values,DataFragment<Tir> fragment) {
 		
-		return new TirArrayAdapter(context,values );
+		return new TirArrayAdapter(context,values,fragment );
 	}
 
 	@Override
@@ -203,6 +205,7 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		score.setId(cursor.getLong(0));
 		score.setIdScore (cursor.getLong(1));
 		score.setV( Score.stringtov(cursor.getString(2)));
+		score.setPoints( Score.stringtopoints(cursor.getString(3)));
 	    return score;
 	  }
 	

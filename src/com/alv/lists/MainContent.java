@@ -31,9 +31,8 @@ public class MainContent {
         addItem(new DummyItem("4", "Matériel",""));
         addItem(new DummyItem("5", "Distances",""));
         addItem(new DummyItem("6", "Scores",""));
-        addItem(new DummyItem("7", "Blason",""));
-        addItem(new DummyItem("8", "Graphique",""));
-        addItem(new DummyItem("9", "À propos du club Arc Lat'Védas","http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component"));
+        addItem(new DummyItem("7", "Graphique",""));
+        addItem(new DummyItem("8", "À propos du club Arc Lat'Védas","http://arclatvedas.free.fr/index.php?option=com_content&view=article&id=20&tmpl=component"));
     }
 
     private static void addItem(DummyItem item) {

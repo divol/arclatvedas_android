@@ -9,8 +9,10 @@ import android.database.Cursor;
 import android.widget.ArrayAdapter;
 
 import com.alv.app.ArrowArrayAdapter;
+import com.alv.app.DataFragment;
 import com.alv.app.DistanceArrayAdapter;
 import com.alv.db.DataSourceBase;
+import com.alv.db.arrow.Arrow;
 
 public class DistancesDataSource extends DataSourceBase<Distance>{
 
@@ -215,7 +217,7 @@ public class DistancesDataSource extends DataSourceBase<Distance>{
 			  return d;
 		  }
 		  
-		  public  ArrayAdapter<Distance> getAdapter(Context context, List<Distance>  values){
+		  public  ArrayAdapter<Distance> getAdapter(Context context, List<Distance>  values,DataFragment<Distance> fragment){
 			  return new DistanceArrayAdapter(context,values );
 
 		  }

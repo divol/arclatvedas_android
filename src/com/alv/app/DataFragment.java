@@ -44,10 +44,11 @@ public abstract class DataFragment<T>  extends Fragment implements OnClickListen
 		 liste.setClickable(true);
 		liste.setEnabled(true);
 		liste.setFocusable(true);
-		
+		//liste.setItemsCanFocus(false);
 		List<T> values = datasource.getAll();
  			       
-		adapter = datasource.getAdapter(liste.getContext(),values);
+		adapter = datasource.getAdapter(liste.getContext(),values,this);
+		
 		 liste.setAdapter(adapter);
          liste.setOnItemLongClickListener(new OnItemLongClickListener() {
 			  @Override
@@ -84,7 +85,7 @@ public abstract class DataFragment<T>  extends Fragment implements OnClickListen
 	}
 	
 	public abstract void showEditDialog(T data) ;
-
+	
 	
 	// Will be called via the onClick attribute
 	  // of the buttons in main.xml
@@ -129,7 +130,7 @@ public abstract class DataFragment<T>  extends Fragment implements OnClickListen
 			 opened=true;
 			 List<T> values = datasource.getAll();
 		       
-				adapter = datasource.getAdapter(liste.getContext(),values);
+				adapter = datasource.getAdapter(liste.getContext(),values,this);
 				 liste.setAdapter(adapter);
 			 adapter.notifyDataSetChanged();
 		 }
@@ -156,7 +157,7 @@ public abstract class DataFragment<T>  extends Fragment implements OnClickListen
 		
 		List<T> values = datasource.getAll();
 	       
-		adapter = datasource.getAdapter(liste.getContext(),values);
+		adapter = datasource.getAdapter(liste.getContext(),values,this);
 		 liste.setAdapter(adapter);
 		 
 		 

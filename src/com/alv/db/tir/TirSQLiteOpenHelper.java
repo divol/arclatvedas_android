@@ -33,7 +33,8 @@ public class TirSQLiteOpenHelper {
 	  public static final String COLUMN_SCORE_VOLEENUMERO = "voeenumero";
 	  
 	  public static final String COLUMN_SCORE_FLY = "fly";
-
+	  public static final String COLUMN_SCORE_POINTS = "points";
+	  
 	  // Database creation sql statement
 	  private static final String DATABASE_CREATE_TIR = "create table "
 	      + TABLE_TIRS + "(" + COLUMN_TIR_ID
@@ -47,7 +48,8 @@ public class TirSQLiteOpenHelper {
 	      + TABLE_SCORES + "(" + COLUMN_SCORE_ID
 	      + " integer primary key autoincrement, " 
 	      + COLUMN_SCORE_IDTIR+ " integer, "
-	      + COLUMN_SCORE_FLY+ " text not null); "
+	      + COLUMN_SCORE_FLY+ " text not null, "
+	      + COLUMN_SCORE_POINTS+ " text not null); "
 	      
 	      
 	      ;

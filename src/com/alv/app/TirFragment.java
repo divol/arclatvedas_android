@@ -23,7 +23,7 @@ import android.widget.ArrayAdapter;
 public class TirFragment extends DataFragment<Tir>  {
 	
 	
-	static final int SAVETIR = 1;  
+	static public final int SAVETIR = 1;  
 	@Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -33,7 +33,6 @@ public class TirFragment extends DataFragment<Tir>  {
 	  }
 	
 
-	
 	
 	
 	

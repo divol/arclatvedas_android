@@ -335,10 +335,11 @@ public class BlasonView extends ImageView {
 
     public void addPoint(PointF pt){
 		PointF p = new PointF();
-		
+		if ((pt.x != pt.y) && (pt.y!= 0f)){
 		// normalisation du point
-		p.set(pt.x,pt.y);
-		impacts.addElement(p);
+			p.set(pt.x,pt.y);
+			impacts.addElement(p);
+		}
 		invalidate();
 	}
 

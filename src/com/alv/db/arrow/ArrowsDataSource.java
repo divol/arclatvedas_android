@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alv.app.ArrowArrayAdapter;
+import com.alv.app.DataFragment;
 import com.alv.db.DBSQLiteOpenHelper;
 import com.alv.db.DataSourceBase;
+import com.alv.db.tir.Tir;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -106,7 +108,7 @@ public class ArrowsDataSource extends DataSourceBase<Arrow>{
 	  }
 	  
 	  
-	  public  ArrayAdapter<Arrow> getAdapter(Context context, List<Arrow>  values){
+	  public  ArrayAdapter<Arrow> getAdapter(Context context, List<Arrow>  values,DataFragment<Arrow> fragment){
 		  return new ArrowArrayAdapter(context,values );
 	  }
 	  

@@ -5,13 +5,56 @@
     android:layout_height="match_parent"
     tools:context="com.alv.app.cropcircles.BlasonActivity"
     tools:ignore="MergeRootFrame" >
-
-    <com.alv.app.cropcircles.BlasonView
+ <com.alv.app.cropcircles.BlasonView
         android:id="@+id/DrawingImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/blasonok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="OK" />
+
+    <Button
+        android:id="@+id/blasonmoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/blasonok"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/voleeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blasonok"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="36dp"
+        android:text="10-10-10-10-10-10"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/totalBlason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blasonmoins"
+        android:layout_alignLeft="@+id/blasonmoins"
+        android:text="720"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/countText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/blasonok"
+        android:layout_alignLeft="@+id/blasonok"
+        android:layout_marginLeft="17dp"
+        android:text="12"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
