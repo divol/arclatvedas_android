@@ -37,6 +37,12 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 		DistanceSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
 		MaterielSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
 		TirSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+		//TODO migration vers une nouvelle table avec des nouvelles colonnes
+		//ALTER TABLE {tableName} RENAME TO TempOldTable;
+		//CREATE TABLE {tableName} (name TEXT, COLNew {type} DEFAULT {defaultValue}, qty INTEGER, rate REAL);
+		//INSERT INTO {tableName} (name, qty, rate) SELECT name, qty, rate FROM TempOldTable;
+		//DROP TABLE TempOldTable;
+
 
 	}
 
