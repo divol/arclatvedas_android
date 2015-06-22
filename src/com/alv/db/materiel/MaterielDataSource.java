@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import com.alv.app.DataFragment;
 import com.alv.app.MaterielArrayAdapter;
 import com.alv.db.DataSourceBase;
-import com.alv.db.distance.Distance;
 
 
 

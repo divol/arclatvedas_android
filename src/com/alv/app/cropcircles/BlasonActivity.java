@@ -1,10 +1,7 @@
 package com.alv.app.cropcircles;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
 
-import com.alv.app.PageListActivity;
 import com.alv.app.R;
 import com.alv.app.TirActivity;
 import com.alv.app.TirEditDialog;
@@ -16,22 +13,13 @@ import com.alv.db.tir.TirDataSource;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.Shader.TileMode;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 

@@ -8,11 +8,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.widget.ArrayAdapter;
 
-import com.alv.app.ArrowArrayAdapter;
 import com.alv.app.DataFragment;
 import com.alv.app.DistanceArrayAdapter;
 import com.alv.db.DataSourceBase;
-import com.alv.db.arrow.Arrow;
 
 public class DistancesDataSource extends DataSourceBase<Distance>{
 

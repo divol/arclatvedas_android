@@ -3,7 +3,6 @@ package com.alv.db;
 import java.util.List;
 
 import com.alv.app.DataFragment;
-import com.alv.db.arrow.Arrow;
 
 import android.content.Context;
 import android.database.SQLException;

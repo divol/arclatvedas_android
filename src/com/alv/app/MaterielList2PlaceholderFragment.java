@@ -1,7 +1,6 @@
 package com.alv.app;
 
 
-import com.alv.lists.MainContent;
 import com.alv.lists.MaterielContent;
 import com.alv.app.R;
 
@@ -14,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 

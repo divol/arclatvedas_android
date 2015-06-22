@@ -8,15 +8,11 @@ import java.util.List;
 
 import com.alv.app.ArrowArrayAdapter;
 import com.alv.app.DataFragment;
-import com.alv.db.DBSQLiteOpenHelper;
 import com.alv.db.DataSourceBase;
-import com.alv.db.tir.Tir;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.widget.ArrayAdapter;
 
 /**

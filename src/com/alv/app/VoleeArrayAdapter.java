@@ -7,11 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.alv.db.tir.Score;
-import com.alv.db.tir.Tir;
 import com.alv.app.R;
 
 public class VoleeArrayAdapter extends ArrayAdapter<Score> implements

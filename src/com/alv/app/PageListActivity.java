@@ -67,7 +67,7 @@ public class PageListActivity extends FragmentActivity
     		case 1:
     		case 2:
     		case 3:
-    		case 8:
+    		case 9:
 	        if (mTwoPane) {
 	            // In two-pane mode, show the detail view in this activity by
 	            // adding or replacing the detail fragment using a
@@ -110,7 +110,11 @@ public class PageListActivity extends FragmentActivity
 		            startActivity(detailIntent);
 		        }
     			break;
-    		case 5://Distances
+    			
+    		case 5: //Sélecteur de flèche
+    			
+    			break;
+    		case 6://Distances
     			
     			if (mTwoPane) {
 		            // In two-pane mode, show the detail view in this activity by
@@ -131,7 +135,7 @@ public class PageListActivity extends FragmentActivity
 		        }
     			
     			break;
-    		case 6: //scores
+    		case 7: //scores
     			
     			
     			
@@ -159,7 +163,7 @@ public class PageListActivity extends FragmentActivity
     			break;
     		
     			
-    		case 7:
+    		case 8:
     			
     			
     			if (mTwoPane) {

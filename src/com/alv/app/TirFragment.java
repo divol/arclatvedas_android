@@ -2,22 +2,11 @@ package com.alv.app;
 
 import com.alv.db.tir.Tir;
 import com.alv.db.tir.TirDataSource;
-import com.alv.lists.MaterielContent;
 
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
 
 
 public class TirFragment extends DataFragment<Tir>  {

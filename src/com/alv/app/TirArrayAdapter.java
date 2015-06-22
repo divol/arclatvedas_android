@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import com.alv.app.R;
 import com.alv.app.cropcircles.BlasonActivity;
 
 import android.view.View.OnClickListener;
-import com.alv.app.cropcircles.BlasonActivity;
 
 public class TirArrayAdapter extends ArrayAdapter<Tir> implements SelectableAdapterInterface,OnClickListener{
 	 private final Context context;

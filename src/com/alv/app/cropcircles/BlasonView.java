@@ -1,6 +1,5 @@
 package com.alv.app.cropcircles;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -16,7 +15,6 @@ import android.graphics.PointF;
 import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 
 //http://developer.android.com/training/custom-views/create-view.html
