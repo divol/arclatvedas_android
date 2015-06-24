@@ -1,6 +1,7 @@
 package com.alv.db;
 
 import com.alv.db.arrow.ArrowSQLiteOpenHelper;
+import com.alv.db.charte.CharteSQLiteOpenHelper;
 import com.alv.db.distance.DistanceSQLiteOpenHelper;
 import com.alv.db.materiel.MaterielSQLiteOpenHelper;
 import com.alv.db.tir.TirSQLiteOpenHelper;
@@ -16,7 +17,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 
 	  private static final String DATABASE_NAME = "archerdata.db";
-	  private static final int DATABASE_VERSION = 12;
+	  private static final int DATABASE_VERSION = 13;
 
 	public DBSQLiteOpenHelper(Context context){
 		 super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,16 +29,21 @@ public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 		DistanceSQLiteOpenHelper.onCreate(db);
 		MaterielSQLiteOpenHelper.onCreate(db);
 		TirSQLiteOpenHelper.onCreate(db);
+		CharteSQLiteOpenHelper.onCreate(db); //version 13
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-		ArrowSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
-		DistanceSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
-		MaterielSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
-		TirSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
-		//TODO migration vers une nouvelle table avec des nouvelles colonnes
+		
+			ArrowSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+			DistanceSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+			MaterielSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+			TirSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+			CharteSQLiteOpenHelper.onUpgrade(db,oldVersion,newVersion);
+
+			
+			//TODO migration vers une nouvelle table avec des nouvelles colonnes
 		//ALTER TABLE {tableName} RENAME TO TempOldTable;
 		//CREATE TABLE {tableName} (name TEXT, COLNew {type} DEFAULT {defaultValue}, qty INTEGER, rate REAL);
 		//INSERT INTO {tableName} (name, qty, rate) SELECT name, qty, rate FROM TempOldTable;

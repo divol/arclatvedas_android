@@ -57,7 +57,6 @@ public class TirSQLiteOpenHelper {
 	
 	
 	public static void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		db.execSQL(DATABASE_CREATE_TIR);
 		db.execSQL(DATABASE_CREATE_SCORE);
 	}

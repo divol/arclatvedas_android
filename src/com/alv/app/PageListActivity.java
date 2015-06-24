@@ -1,6 +1,7 @@
 package com.alv.app;
 
 import com.alv.app.R;
+import com.alv.app.spinchart.SpinCharteLoader;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -112,7 +113,8 @@ public class PageListActivity extends FragmentActivity
     			break;
     			
     		case 5: //Sélecteur de flèche
-    			
+    			SpinCharteLoader charteloader = new SpinCharteLoader(this.getApplicationContext());
+    			charteloader.boot();
     			break;
     		case 6://Distances
     			
