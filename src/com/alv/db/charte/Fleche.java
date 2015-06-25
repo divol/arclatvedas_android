@@ -33,8 +33,21 @@ public class Fleche implements Parcelable{
         taille = in.readFloat();
         fabricant = in.readString();
   }
-
-    
+	
+	
+	@Override
+    public String toString(){
+    	
+    	String str ="Modèle: "+modele;
+    	str +="\nNom: "+name;
+    	str +=" Spin: "+spin;
+    	str +="\nTaille: "+taille;
+    	str +=" Grain: "+grain;
+    	str +=" Diam: "+diametreoutside;
+    	str +="\nFabricant: "+fabricant;
+    	
+    	return  str;
+    }
 	public long getId() {
 		return id;
 	}

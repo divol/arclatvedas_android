@@ -7,11 +7,11 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Attention, toutes les flèches du marché ne sont pas dans la base (CarbonExpress™ et Easton™). Uniquement pour le classique.  Demandez conseil avant de commander !</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_materiel_global">MaterielGlobalActivity</string>
     <string name="title_activity_materiel_list2">MaterielList2</string>
-     <string name="title_activity_distance">Distance</string>
+    <string name="title_activity_distance">Distance</string>
     <string name="title_activity_tir">Tirs et compétitions</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="arrows">Flèches</string>
@@ -41,7 +41,6 @@
     <string name="graphique">graphique</string>
     <string name="title_activity_tir_graph">graphique</string>
     <string name="title_activity_Circle">Blason</string>
-    
-    
-    
+    <string name="title_activity_charte">Sélecteur de flèche</string>
+
 </resources>

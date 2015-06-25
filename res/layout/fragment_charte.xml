@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.alv.app.CharteActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/textViewTaille"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewHeader"
+        android:layout_below="@+id/textViewHeader"
+        android:layout_marginTop="22dp"
+        android:text="Taille:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewPuissance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewTaille"
+        android:layout_below="@+id/textViewTaille"
+        android:layout_marginTop="20dp"
+        android:text="Puissance:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editTextPuissance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewPuissance"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/textViewPuissance"
+        android:ems="10"
+        android:inputType="number" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextTaille"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextPuissance"
+        android:layout_alignLeft="@+id/editTextPuissance"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/buttonCherche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextPuissance"
+        android:layout_below="@+id/editTextPuissance"
+        android:layout_marginTop="15dp"
+        android:text="Chercher" />
+
+    <ListView
+        android:id="@+id/listViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewPuissance"
+        android:layout_below="@+id/buttonCherche" >
+
+    </ListView>
+
+</RelativeLayout>

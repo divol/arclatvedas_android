@@ -1,5 +1,8 @@
 package com.alv.app.spinchart;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -105,12 +108,24 @@ public class SpinCharteLoader {
 			String surname = surnames.get(0);
 			String spin = spins.get(0);
 			String fabricant = fabricants.get(0);
-
-			
+			char decSeparator='.';
+			NumberFormat nf = NumberFormat.getInstance();
+			if(nf instanceof DecimalFormat) {
+			    DecimalFormatSymbols sym = ((DecimalFormat) nf).getDecimalFormatSymbols();
+			     decSeparator = sym.getDecimalSeparator();
+			}
 			try {
-		          taille = Float.parseFloat(tailles.get(0));
-		          grain = Float.parseFloat(grains.get(0));
-		          diametreoutside = Float.parseFloat(diametreoutsides.get(0));
+				  String staille = tailles.get(0);
+				  staille = staille.replace(',', decSeparator);
+		          taille = Float.parseFloat(staille);
+		          
+				  String sgrain = grains.get(0);
+				  sgrain = sgrain.replace(',', decSeparator);
+		          grain = Float.parseFloat(sgrain);
+		          
+				  String sdiametre = diametreoutsides.get(0);
+				  sdiametre = sdiametre.replace(',', decSeparator);
+		          diametreoutside = Float.parseFloat(sdiametre);
 
 		      } catch (NumberFormatException nfe) {
 		         System.out.println("NumberFormatException: " + nfe.getMessage());

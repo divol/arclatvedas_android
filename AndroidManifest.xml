@@ -3,9 +3,15 @@
     package="com.alv.app"
     android:versionCode="1"
     android:versionName="1.0" >
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -19,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.alv.app.SplashScreen"
+            android:name=".SplashScreen"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -30,64 +36,61 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.alv.app.PageListActivity"
+            android:name=".PageListActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.alv.app.PageDetailActivity"
+            android:name=".PageDetailActivity"
             android:label="@string/title_page_detail"
-            android:parentActivityName="com.alv.app.PageListActivity" >
+            android:parentActivityName=".PageListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.testwebview.PageListActivity" />
         </activity>
-       
         <activity
-            android:name="com.alv.app.MaterielList2"
+            android:name=".MaterielList2"
             android:configChanges="orientation"
             android:label="@string/title_activity_materiel_list2"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.alv.app.DistanceActivity"
+            android:name=".DistanceActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_distance"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.alv.app.TirActivity"
+            android:name=".TirActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_tir"
             android:screenOrientation="portrait" >
         </activity>
-        
         <activity
-            android:name="com.alv.app.TirGraphActivity"
+            android:name=".TirGraphActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_tir_graph"
             android:screenOrientation="portrait" >
         </activity>
-        
-                
         <activity
-            android:name="com.alv.app.TirEditDialog"
+            android:name=".TirEditDialog"
             android:configChanges="orientation"
             android:label="@string/title_activity_tir"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
-        
-        
         <activity
-            android:name="com.alv.app.cropcircles.BlasonActivity"
+            android:name=".cropcircles.BlasonActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_Circle"
             android:screenOrientation="portrait" >
         </activity>
-        
-        
+        <activity
+            android:name=".CharteActivity"
+            android:label="@string/title_activity_charte" 
+             android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -127,6 +127,8 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 	@Override
 	public ArrayAdapter<Charte> getAdapter(Context context,
 			List<Charte> values, DataFragment<Charte> frag) {
+		
+		
 		return null;
 	}
 

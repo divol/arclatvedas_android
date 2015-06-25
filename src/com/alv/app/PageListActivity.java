@@ -115,6 +115,14 @@ public class PageListActivity extends FragmentActivity
     		case 5: //Sélecteur de flèche
     			SpinCharteLoader charteloader = new SpinCharteLoader(this.getApplicationContext());
     			charteloader.boot();
+    			
+    			
+    			
+    			
+	            Intent charteIntent = new Intent(this, CharteActivity.class);
+	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
+	            startActivity(charteIntent);
+
     			break;
     		case 6://Distances
     			
