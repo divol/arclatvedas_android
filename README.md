@@ -16,6 +16,8 @@ Simplement on peut :
 
 voir aussi la version iOS, quasiment iso-fonctionnelle
 
+sur GooglePlay : https://play.google.com/store/apps/details?id=com.alv.app
+
 
 The MIT License (MIT)
 
