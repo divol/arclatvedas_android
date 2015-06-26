@@ -9,19 +9,20 @@ import java.util.HashMap;
 
 import android.content.Context;
 
-import com.alv.app.R;
 
 public class CSVLoader {
 
 	Context c;
 	String[] headers=null;
-	public ArrayList<HashMap<String,ArrayList<String>>> result ; // colonnes multiples avec le meme nom possible
+	public ArrayList<HashMap<String,ArrayList<String>>> resultAsArray ; // colonnes multiples avec le meme nom possible
+	public ArrayList<HashMap<String,String>> resultAsString ; // colonnes simple
 
 	
     public CSVLoader(Context context)
     {
          c= context;
-         result = new ArrayList<HashMap<String,ArrayList<String>>>();
+         resultAsArray = new ArrayList<HashMap<String,ArrayList<String>>>();
+         resultAsString = new  ArrayList<HashMap<String,String>>();
      }
     
     public CSVLoader(Context context,int fileresourceid)
@@ -48,6 +49,7 @@ public class CSVLoader {
 	        }
 	        while ((line = reader.readLine()) != null) {
 	        	HashMap<String,ArrayList<String>> row = new HashMap<String, ArrayList<String>>();
+	        	HashMap<String,String> rowsimple = new HashMap<String, String>();
                  int i=0;
 	             String[] RowData = line.split(";");
 	             for (String str : RowData){
@@ -58,10 +60,11 @@ public class CSVLoader {
 	            	 }
 	            	 col.add(str);
 	            	 row.put(headers[i], col);
-	            	 
+	            	 rowsimple.put(headers[i], str);
 	            	 i++;
 	             }
-	             result.add(row);
+	             resultAsArray.add(row);
+	             resultAsString.add(rowsimple);
 	        }
 	    }
 	    catch (IOException ex) {

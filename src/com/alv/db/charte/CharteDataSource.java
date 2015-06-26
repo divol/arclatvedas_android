@@ -83,7 +83,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 
 		 ContentValues values =data.getValues();
 		  database.update(CharteSQLiteOpenHelper.TABLE_CHARTE, values, CharteSQLiteOpenHelper.COLUMN_CHARTE_ID + " = " +data.getId(), null);
-		  System.out.println("Charte update with id: " + data.getId());
+		 // System.out.println("Charte update with id: " + data.getId());
 		  
 		  
 	}
@@ -92,7 +92,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 	public void delete(Charte data) {
 		long id = data.getId();
 	    
-	    System.out.println("Charte deleted with id: " + id);
+	  //  System.out.println("Charte deleted with id: " + id);
 	    
 	    database.delete(CharteSQLiteOpenHelper.TABLE_JOINCHARTEGROUPE, CharteSQLiteOpenHelper.COLUMN_CHARTEGROUPE_CHARTE_ID
 		        + " = " + id, null);
@@ -250,7 +250,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 
 		 ContentValues values =data.getValues();
 		  database.update(CharteSQLiteOpenHelper.TABLE_GROUPE, values, CharteSQLiteOpenHelper.COLUMN_GROUPE_ID + " = " +data.getId(), null);
-		  System.out.println("Groupe update with id: " + data.getId());
+		 // System.out.println("Groupe update with id: " + data.getId());
 		  
 		  
 	}
@@ -258,7 +258,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 	public void deleteGroupe(Groupe data) {
 		long id = data.getId();
 	    
-	    System.out.println("Groupe deleted with id: " + id);
+	   // System.out.println("Groupe deleted with id: " + id);
 	    
 	    database.delete(CharteSQLiteOpenHelper.TABLE_JOINCHARTEGROUPE, CharteSQLiteOpenHelper.COLUMN_CHARTEGROUPE_GROUPE_ID
 		        + " = " + id, null);
@@ -322,7 +322,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 
 		 ContentValues values =data.getValues();
 		  database.update(CharteSQLiteOpenHelper.TABLE_FLECHE, values, CharteSQLiteOpenHelper.COLUMN_FLECHE_ID + " = " +data.getId(), null);
-		  System.out.println("Fleche update with id: " + data.getId());
+		//  System.out.println("Fleche update with id: " + data.getId());
 		  
 		  
 	}
@@ -330,7 +330,7 @@ public class CharteDataSource extends DataSourceBase<Charte> {
 	public void deleteFleche(Fleche data) {
 		long id = data.getId();
 	    
-	    System.out.println("Fleche deleted with id: " + id);
+	 //   System.out.println("Fleche deleted with id: " + id);
 	    
 	    
 	    database.delete(CharteSQLiteOpenHelper.TABLE_JOINGROUPEFLECHE, CharteSQLiteOpenHelper.COLUMN_GROUPEFLECHE_FLECHE_ID

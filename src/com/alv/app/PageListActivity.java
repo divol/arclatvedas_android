@@ -3,9 +3,12 @@ package com.alv.app;
 import com.alv.app.R;
 import com.alv.app.spinchart.SpinCharteLoader;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.ProgressBar;
 
 
 
@@ -40,6 +43,18 @@ public class PageListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_list);
         new Utilitaire().getLastLocation(this);
+        
+        
+        //TODO pas terrible  ...
+		SpinCharteLoader charteloader = new SpinCharteLoader(this.getApplicationContext());
+		boolean go =charteloader.isbootneeded();
+		charteloader.closeDB();
+		
+		if (go){
+			BackgroundTask task = new BackgroundTask(PageListActivity.this);
+			task.execute();
+		}
+
         if (findViewById(R.id.page_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
@@ -52,6 +67,10 @@ public class PageListActivity extends FragmentActivity
             ((PageListFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.page_list))
                     .setActivateOnItemClick(true);
+            
+            
+
+
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
@@ -113,10 +132,12 @@ public class PageListActivity extends FragmentActivity
     			break;
     			
     		case 5: //Sélecteur de flèche
-    			SpinCharteLoader charteloader = new SpinCharteLoader(this.getApplicationContext());
-    			charteloader.boot();
     			
     			
+
+
+    		      
+    		      
     			
     			
 	            Intent charteIntent = new Intent(this, CharteActivity.class);
@@ -198,5 +219,47 @@ public class PageListActivity extends FragmentActivity
     	        
 
     	}
+    }
+    
+    
+    
+    //TODO pas bon du tout
+    private class BackgroundTask extends AsyncTask <Void, Void, Void> {
+        private ProgressDialog dialog;
+        PageListActivity activity;
+        public BackgroundTask(PageListActivity activity) {
+        	this.activity = activity;
+            dialog = new ProgressDialog(activity);
+            
+        }
+     
+        @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Chargement des tables...");
+            dialog.show();
+        }
+         
+        @Override
+        protected void onPostExecute(Void result) {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        }
+         
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+            	Thread.sleep(1);
+        		SpinCharteLoader charteloader = new SpinCharteLoader(this.activity.getApplicationContext());
+        		//charteloader.boot();
+        		charteloader.bootSQL();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+     
+            return null;
+        }
+         
     }
 }

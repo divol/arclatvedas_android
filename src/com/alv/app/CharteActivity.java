@@ -138,7 +138,7 @@ public class CharteActivity extends Activity {
 				          puissance = Integer.parseInt(spuissance);
 
 				      } catch (NumberFormatException nfe) {
-				         System.out.println("NumberFormatException: " + nfe.getMessage());
+				         System.out.println("mauvais nombre saisi: " + nfe.getMessage());
 				      }
 
 					if (taille >0 && puissance >0)

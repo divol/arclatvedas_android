@@ -1388,9 +1388,10 @@ containing a value of this type.
         public static final int ce1=0x7f060000;
         public static final int ce2=0x7f060001;
         public static final int ce3=0x7f060002;
-        public static final int easton1=0x7f060003;
-        public static final int easton2=0x7f060004;
-        public static final int easton3=0x7f060005;
+        public static final int charte=0x7f060003;
+        public static final int easton1=0x7f060004;
+        public static final int easton2=0x7f060005;
+        public static final int easton3=0x7f060006;
     }
     public static final class string {
         public static final int Ajouter=0x7f0c0023;

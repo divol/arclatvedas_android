@@ -26,12 +26,33 @@ public class SpinCharteLoader {
 		 charteDS.open();
 	}
 	
+	public boolean isbootneeded(){
+		return (charteDS.getAll().size() == 0 );
+	}
+	
+	public void closeDB(){
+		 charteDS.close();
+	}
+	
+	public void bootSQL(){
+		
+		SQLLoader loader =new SQLLoader(c,charteDS);
+		if (isbootneeded() ) {
+			loader.loadSQL(R.raw.charte);
+		}
+		charteDS.testFleches();
+		charteDS.close();
+	}
 	public void boot(){
 		
 		
-		if (charteDS.getAll().size() == 0 ) {
+		if (isbootneeded() ) {
+			charteDS.beginTransaction();
 			bootDB(R.raw.easton1,R.raw.easton2,R.raw.easton3);
+			charteDS.commitTransaction();
+			charteDS.beginTransaction();
 			bootDB(R.raw.ce1,R.raw.ce2,R.raw.ce3);
+			charteDS.commitTransaction();
 		}
 		
 		charteDS.testFleches();
@@ -43,35 +64,34 @@ public class SpinCharteLoader {
 		//charte
 		CSVLoader loader = new CSVLoader(c, r1);
 		
-		System.out.println("charte loader.result.size "+loader.result.size());
+		//System.out.println("charte loader.result.size "+loader.result.size());
 		
 		
-		for (int i=0 ; i<loader.result.size() ; i++) {
-			HashMap<String,ArrayList<String>> rr = loader.result.get(i);
-			ArrayList<String> tailles = rr.get("length");
-			ArrayList<String> lows = rr.get("low");
-			ArrayList<String> hights = rr.get("hight");
-			ArrayList<String> groupes = rr.get("groupname");
-			long taille = 0;
-			long low = 0;
-			long hight = 0 ;
+		for (int i=0 ; i<loader.resultAsString.size() ; i++) {
+			HashMap<String,String> rr = loader.resultAsString.get(i);
+			String taille = rr.get("length");
+			String low = rr.get("low");
+			String hight = rr.get("hight");
+			String groupe = rr.get("groupname");
+			long ltaille = 0;
+			long llow = 0;
+			long lhight = 0 ;
 			try {
-		          taille = Long.parseLong(tailles.get(0));
-		          low = Long.parseLong(lows.get(0));
-		          hight = Long.parseLong(hights.get(0));
+		          ltaille = Long.parseLong(taille);
+		          llow = Long.parseLong(low);
+		          lhight = Long.parseLong(hight);
 
 		      } catch (NumberFormatException nfe) {
-		         System.out.println("NumberFormatException: " + nfe.getMessage());
+		         System.out.println("NumberFormatException_b: " + nfe.getMessage());
 		      }
 
-			String groupe = groupes.get(0);
 			
-			System.out.println("charte "+taille+low+hight+groupe);
+			//System.out.println("charte "+taille+low+hight+groupes);
 			
 			Charte charteB = new Charte();
-			charteB.setLength(taille);
-			charteB.setLow(low);
-			charteB.setHight(hight);
+			charteB.setLength(ltaille);
+			charteB.setLow(llow);
+			charteB.setHight(lhight);
 			
 			charteB = charteDS.create(charteB);
 			
@@ -87,51 +107,68 @@ public class SpinCharteLoader {
 		
 		//fleches
 		loader = new CSVLoader(c,r2);
-		for (int i=0 ; i<loader.result.size() ; i++) {
-			HashMap<String,ArrayList<String>> rr = loader.result.get(i);
-			ArrayList<String> modeles = rr.get("modele");
-			ArrayList<String> names = rr.get("name");
-			ArrayList<String> surnames = rr.get("surname");
-			ArrayList<String> grains = rr.get("grain");
-			ArrayList<String> spins = rr.get("spin");
-			ArrayList<String> diametreoutsides = rr.get("diametreoutside");
-			ArrayList<String> tailles = rr.get("taille");
-			ArrayList<String> fabricants = rr.get("fabricant");
+		for (int i=0 ; i<loader.resultAsString.size() ; i++) {
+			HashMap<String,String> rr = loader.resultAsString.get(i);
+			String modele = rr.get("modele");
+			String name = rr.get("name");
+			String surname = rr.get("surname");
+			String grain = rr.get("grain");
+			String spin = rr.get("spin");
+			String diametreoutside = rr.get("diametreoutside");
+			String taille = rr.get("taille");
+			String fabricant = rr.get("fabricant");
 
-			float taille =0.0f;
-			float grain =0.0f;
-			float diametreoutside =0.0f;
+			float ftaille =0.0f;
+			float fgrain =0.0f;
+			float fdiametreoutside =0.0f;
 			
 			
-			String modele = modeles.get(0);
-			String name = names.get(0);
-			String surname = surnames.get(0);
-			String spin = spins.get(0);
-			String fabricant = fabricants.get(0);
+//			String modele = modeles.get(0);
+//			String name = names.get(0);
+//			String surname = surnames.get(0);
+//			String spin = spins.get(0);
+//			String fabricant = fabricants.get(0);
+			
+//			 System.out.println("taille1: " + taille);
+//			 System.out.println("grain1: " + grain);
+//			 System.out.println("diametreoutside1: " + diametreoutside);
+			 
+			 
+			 
 			char decSeparator='.';
-			NumberFormat nf = NumberFormat.getInstance();
-			if(nf instanceof DecimalFormat) {
-			    DecimalFormatSymbols sym = ((DecimalFormat) nf).getDecimalFormatSymbols();
-			     decSeparator = sym.getDecimalSeparator();
-			}
+//			NumberFormat nf = NumberFormat.getInstance();
+//			if(nf instanceof DecimalFormat) {
+//			    DecimalFormatSymbols sym = ((DecimalFormat) nf).getDecimalFormatSymbols();
+//			     decSeparator = sym.getDecimalSeparator();
+//			}
 			try {
-				  String staille = tailles.get(0);
-				  staille = staille.replace(',', decSeparator);
-		          taille = Float.parseFloat(staille);
+				  taille = taille.replace(',', decSeparator);
+		          ftaille = Float.parseFloat(taille);
 		          
-				  String sgrain = grains.get(0);
-				  sgrain = sgrain.replace(',', decSeparator);
-		          grain = Float.parseFloat(sgrain);
+				  grain = grain.replace(',', decSeparator);
+		          fgrain = Float.parseFloat(grain);
 		          
-				  String sdiametre = diametreoutsides.get(0);
-				  sdiametre = sdiametre.replace(',', decSeparator);
-		          diametreoutside = Float.parseFloat(sdiametre);
+				  diametreoutside = diametreoutside.replace(',', decSeparator);
+		          fdiametreoutside = Float.parseFloat(diametreoutside);
+		          
+		          
+//					 System.out.println("taille2: " + taille);
+//					 System.out.println("grain2: " + grain);
+//					 System.out.println("diametreoutside2: " + diametreoutside);
+//
+//					 
+//					 
+//					 System.out.println("ftaille: " + ftaille);
+//					 System.out.println("fgrain: " + fgrain);
+//					 System.out.println("diametreoutside: " + fdiametreoutside);
+
+					 
 
 		      } catch (NumberFormatException nfe) {
-		         System.out.println("NumberFormatException: " + nfe.getMessage());
+		         System.out.println("NumberFormatException_b: " + nfe.getMessage());
 		      }
 
-			System.out.println("fleche "+modele +name +grain +spin+taille);
+			//System.out.println("fleche "+modele +name +grain +spin+taille);
 
 			Fleche flecheB = new Fleche();
 			flecheB.setModele(modele);
@@ -139,9 +176,9 @@ public class SpinCharteLoader {
 			flecheB.setSurname(surname);
 			flecheB.setSpin(spin);
 			flecheB.setFabricant(fabricant);
-			flecheB.setTaille(taille);
-			flecheB.setGrain(grain);
-			flecheB.setDiametreoutside(diametreoutside);
+			flecheB.setTaille(ftaille);
+			flecheB.setGrain(fgrain);
+			flecheB.setDiametreoutside(fdiametreoutside);
 			
 			
 			flecheB = charteDS.createFleche(flecheB);
@@ -151,8 +188,8 @@ public class SpinCharteLoader {
 		
 		//groups
 		loader = new CSVLoader(c, r3);
-		for (int i=0 ; i<loader.result.size() ; i++) {
-			HashMap<String,ArrayList<String>> rr = loader.result.get(i);
+		for (int i=0 ; i<loader.resultAsArray.size() ; i++) {
+			HashMap<String,ArrayList<String>> rr = loader.resultAsArray.get(i);
 			ArrayList<String> groups = rr.get("group");
 			ArrayList<String> modeles = rr.get("modele");
 
@@ -160,9 +197,9 @@ public class SpinCharteLoader {
 			String groupe = groups.get(0);
 			Groupe groupeB = charteDS.getGroupeByName(groupe);
 			
-			System.out.println("groupe "+groupe + "nbre fleches " + modeles.size());
+			//System.out.println("groupe "+groupe + "nbre fleches " + modeles.size());
 			for (String modele : modeles){
-				System.out.println("fleche groupe "+modele);
+				//System.out.println("fleche groupe "+modele);
 				Fleche  flecheB = charteDS.getFlecheByModele(modele);
 				charteDS.createGroupeFleche(groupeB, flecheB);
 

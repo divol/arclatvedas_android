@@ -27,6 +27,32 @@ public abstract class DataSourceBase<T> {
 		 dbHelper.close();
 	}
 	
+	
+	public void beginTransaction(){
+		database.beginTransaction();
+		
+	}
+	public void setTransactionSuccessful(){
+		database.setTransactionSuccessful();
+		
+	}
+	public void endTransaction(){
+		database.endTransaction();
+		
+	}
+
+	public void commitTransaction(){
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		
+	}
+	public void rollbackTransaction(){
+		database.endTransaction();
+		
+	}
+	public void execSQL(String sql)throws SQLException{
+		database.execSQL(sql);
+	}
 	public abstract T create(T data);
 	public abstract void update(T data);
 	public abstract void delete(T data);

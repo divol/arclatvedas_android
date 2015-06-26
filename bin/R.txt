@@ -494,9 +494,10 @@ int menu materiel_list2 0x7f0f0002
 int raw ce1 0x7f060000
 int raw ce2 0x7f060001
 int raw ce3 0x7f060002
-int raw easton1 0x7f060003
-int raw easton2 0x7f060004
-int raw easton3 0x7f060005
+int raw charte 0x7f060003
+int raw easton1 0x7f060004
+int raw easton2 0x7f060005
+int raw easton3 0x7f060006
 int string Ajouter 0x7f0c0023
 int string Edit 0x7f0c0029
 int string Effacer 0x7f0c0024
