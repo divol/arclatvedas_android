@@ -18,6 +18,7 @@ voir aussi la version iOS, quasiment iso-fonctionnelle
 
 sur GooglePlay : https://play.google.com/store/apps/details?id=com.alv.app
 
+sur mon club : http://arclatvedas.free.fr
 
 The MIT License (MIT)
 
