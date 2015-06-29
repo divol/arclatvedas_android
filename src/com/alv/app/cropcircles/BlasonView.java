@@ -240,10 +240,10 @@ public class BlasonView extends ImageView {
 		case MotionEvent.ACTION_MOVE:
 			zooming = true;
 
-			if (zoomPos.y > centreX+10){
-				decalageloupe = 50;
+			if (zoomPos.y > centreX-100){
+				decalageloupe = 100;
 			}else{
-				decalageloupe = -50;
+				decalageloupe = -100;
 			}
 
 			m.reset();

@@ -1096,17 +1096,19 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int ic_launcher=0x7f020057;
         public static final int icone=0x7f020058;
-        public static final int labelor=0x7f020059;
-        public static final int logo_cd34=0x7f02005a;
-        public static final int logo_cg34=0x7f02005b;
-        public static final int logo_cghs34=0x7f02005c;
-        public static final int logo_drdjs=0x7f02005d;
-        public static final int logo_lattes=0x7f02005e;
-        public static final int logo_ligue_lr=0x7f02005f;
-        public static final int logo_region_lr=0x7f020060;
-        public static final int logo_saintjeandevedas=0x7f020061;
-        public static final int logoarclatvedas=0x7f020062;
-        public static final int mmm=0x7f020063;
+        public static final int icone192=0x7f020059;
+        public static final int icone512=0x7f02005a;
+        public static final int labelor=0x7f02005b;
+        public static final int logo_cd34=0x7f02005c;
+        public static final int logo_cg34=0x7f02005d;
+        public static final int logo_cghs34=0x7f02005e;
+        public static final int logo_drdjs=0x7f02005f;
+        public static final int logo_lattes=0x7f020060;
+        public static final int logo_ligue_lr=0x7f020061;
+        public static final int logo_region_lr=0x7f020062;
+        public static final int logo_saintjeandevedas=0x7f020063;
+        public static final int logoarclatvedas=0x7f020064;
+        public static final int mmm=0x7f020065;
     }
     public static final class id {
         public static final int DrawingImageView=0x7f0b003e;
