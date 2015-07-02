@@ -15,6 +15,8 @@ public class Tir implements Parcelable{
 	private String date;
 	private String distance;
 	private String comment;
+	private long blasonType;
+	
 	private ArrayList<Score> scores;
 	
 	
@@ -71,6 +73,12 @@ public class Tir implements Parcelable{
 		this.comment = comment;
 	}
 
+	public long getBlasonType() {
+		return blasonType;
+	}
+	public void setBlasonType(long blasonType) {
+		this.blasonType = blasonType;
+	}
 
 
 	public ArrayList<Score> getScores() {
@@ -101,6 +109,7 @@ public int getTotal(){
         date = in.readString();
         distance = in.readString();
         comment=in.readString();
+        blasonType =id = in.readLong();
         scores = new ArrayList<Score>();
       in.readTypedList(scores, Score.CREATOR);
 
@@ -120,7 +129,8 @@ public int getTotal(){
  		values.put(TirSQLiteOpenHelper.COLUMN_TIR_DATE, date); 
  		values.put(TirSQLiteOpenHelper.COLUMN_TIR_DISTANCE, distance);  
  		values.put(TirSQLiteOpenHelper.COLUMN_TIR_COMMENT, comment); 
-		
+ 		values.put(TirSQLiteOpenHelper.COLUMN_TIR_BLASON, blasonType); 
+
 		return values;
 		
 	}
@@ -134,9 +144,11 @@ public int getTotal(){
 	    dest.writeString(distance);
 	    dest.writeTypedList(scores);
 	    dest.writeString(comment);
+	    dest.writeLong(blasonType);
 
 	}
 	
+
 	public static final Parcelable.Creator<Tir> CREATOR = new Parcelable.Creator<Tir>() {
 		   public Tir createFromParcel(Parcel in) {
 		       return new Tir(in); 

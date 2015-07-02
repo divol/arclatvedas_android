@@ -22,7 +22,8 @@ public class TirDataSource extends DataSourceBase<Tir>{
 			TirSQLiteOpenHelper.COLUMN_TIR_LOCATION	,
 			TirSQLiteOpenHelper.COLUMN_TIR_DATE,
 			TirSQLiteOpenHelper.COLUMN_TIR_DISTANCE,
-			TirSQLiteOpenHelper.COLUMN_TIR_COMMENT};
+			TirSQLiteOpenHelper.COLUMN_TIR_COMMENT,
+			TirSQLiteOpenHelper.COLUMN_TIR_BLASON};
 
 
 	  private String[] allColumnsScore = {TirSQLiteOpenHelper.COLUMN_SCORE_ID,
@@ -111,6 +112,8 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		  tir.setDate(cursor.getString(2));
 		  tir.setDistance(cursor.getString(3));
 		  tir.setComment(cursor.getString(4));
+		  tir.setBlasonType(cursor.getLong(5));
+
 
 	    return tir;
 	  }
@@ -133,6 +136,7 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		tir.setDate(d);
 		tir.setLocation("");
 		tir.setComment("");
+		tir.setBlasonType(0);
 		return tir;
 	}
 	

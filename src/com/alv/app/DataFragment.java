@@ -63,7 +63,7 @@ public abstract class DataFragment<T>  extends Fragment implements OnClickListen
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				  System.out.println("row clicked"+position);
-				  int oldpos = parent.getSelectedItemPosition();
+				 // int oldpos = parent.getSelectedItemPosition();
 				  
 				  parent.setSelection(position);
 				  ((SelectableAdapterInterface)adapter).setSelection(position);

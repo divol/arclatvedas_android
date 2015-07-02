@@ -23,7 +23,18 @@ public class Score implements Parcelable{
 	private ArrayList<Integer> v;
     private ArrayList<PointF> points;
 	
+    private ArrayList<PointF> zones;
+   /*
+     (pour les trispot par exemple)
+    (1,0) = haut;
+    (2,0) = milieu;
+    (3,0) = bas;
+    
+    la seconde coordonnée pourrait être utilisée pour la position de l'archer (A =1, B=2, C=3, D=4, ....)
 	
+	(1,1) coordonnée zone haut pour l'archer en A
+	
+	*/
 	public long getId() {
 		return id;
 	}

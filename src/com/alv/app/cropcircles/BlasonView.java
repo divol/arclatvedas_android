@@ -22,6 +22,34 @@ import android.widget.ImageView;
 
 public class BlasonView extends ImageView {
 
+	enum Blason{
+		FITA ("FITA",0) ,	
+		FITAReduce ("FITA réduit",1),
+		TriSpot ("TriSpot",2),
+		Campagne ("Campagne",3),
+		CampagneDouble ("Campagne double",4),
+		CampagneTriple ("TriSpot campagne",5),
+		Beursault ("Beursault",6),
+		Nature ("Nature",7),
+		ThreeD ("3D",8),
+		TriSpotVegas ("TriSpot Végas",9);
+		
+		
+		private String name = "";
+		private int value;
+		
+		
+		Blason(String name,int value){
+		    this.name = name;
+		    this.value = value;
+		  }
+		   public int getValue(){
+			   return this.value;
+		   }
+		  public String toString(){
+		    return name;
+		  }
+	};
 	
 	public BlasonInterface delegate;
 	float centreX;
@@ -43,7 +71,7 @@ public class BlasonView extends ImageView {
 	BitmapShader mShader;
 	Paint mPaint;
 	int barheight;
-	Matrix m = new Matrix();
+	Matrix mat = new Matrix();
 	Paint greenpaint;
 	Paint blackpaint;
 	Paint whitepaint;
@@ -57,7 +85,8 @@ public class BlasonView extends ImageView {
 		super(context, attrs);
 		setClickable(true);
 
-
+       Blason b =Blason.FITA;
+       
 		greenpaint = new Paint();
 		greenpaint.setStyle(Paint.Style.STROKE);
 
@@ -246,12 +275,12 @@ public class BlasonView extends ImageView {
 				decalageloupe = -100;
 			}
 
-			m.reset();
+			mat.reset();
 			//m.setTranslate(zoomPos.x-start.x,zoomPos.y-start.y);
-			m.postScale(2f, 2f,zoomPos.x,zoomPos.y+decalageloupe);
+			mat.postScale(2f, 2f,zoomPos.x,zoomPos.y+decalageloupe);
 
 
-			mPaint.getShader().setLocalMatrix(m);
+			mPaint.getShader().setLocalMatrix(mat);
 
 
 
@@ -266,7 +295,7 @@ public class BlasonView extends ImageView {
 			// normalisation du point
 			p.set(zoomPos.x/taille,zoomPos.y/taille);
 		
-			delegate.managePanEnd(p,	getScoreForPoint(zoomPos.x,zoomPos.y));
+			delegate.managePanEnd(p,getScoreForPoint(zoomPos.x,zoomPos.y));
 			break; 
 		case MotionEvent.ACTION_CANCEL:
 			zooming = false;

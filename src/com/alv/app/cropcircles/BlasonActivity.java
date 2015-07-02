@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -62,9 +63,21 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		curScore = listAdapter.getItem(scores.size()-1);
 
         
-
+      
 		setContentView(R.layout.activity_circleview);
-		drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+		
+		
+		LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+		
+		drawingImageView = new  BlasonView(this,null);
+		drawingImageView.setLayoutParams(params);
+		layout.addView(drawingImageView);
+		
+		
+		//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+
 		drawingImageView.delegate = this;
 
 

@@ -1,6 +1,5 @@
 package com.alv.db.charte;
 
-import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.os.Parcel;

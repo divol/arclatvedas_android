@@ -21,6 +21,8 @@ public class TirSQLiteOpenHelper {
 	  public static final String COLUMN_TIR_DATE = "date";
 	  public static final String COLUMN_TIR_DISTANCE = "distance";
 	  public static final String COLUMN_TIR_COMMENT = "comment";
+	  public static final String COLUMN_TIR_BLASON = "blasontype";
+
 
 //		private long id;
 //		private long idScore;
@@ -42,7 +44,9 @@ public class TirSQLiteOpenHelper {
 	      + COLUMN_TIR_LOCATION+ " text not null, "
 	      + COLUMN_TIR_DATE+ " text not null, "
 	       + COLUMN_TIR_DISTANCE+ " text not null, "
-	      + COLUMN_TIR_COMMENT+ " text not null); ";
+	      + COLUMN_TIR_COMMENT+ " text not null," 
+	      + COLUMN_TIR_BLASON+ " integer DEFAULT 0, "+
+	      		"); ";
 	  
 	  private static final String DATABASE_CREATE_SCORE ="create table "
 	      + TABLE_SCORES + "(" + COLUMN_SCORE_ID
@@ -62,12 +66,36 @@ public class TirSQLiteOpenHelper {
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		Log.w(DistanceSQLiteOpenHelper.class.getName(),
-		        "Upgrading database from version " + oldVersion + " to "
-		            + newVersion + ", which will destroy all old data");
-		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIRS);
-		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORES);
-		    onCreate(db);
+		    
+		    if (oldVersion == 13){
+		    	// ajout du champ "blason" en v. 14
+				//TODO migration vers une nouvelle table avec des nouvelles colonnes
+		    	
+		    	 db.execSQL("ALTER TABLE " + TABLE_TIRS + " RENAME TO TempOld"+TABLE_TIRS);
+		    	 db.execSQL(DATABASE_CREATE_TIR);
+		    	 db.execSQL("INSERT INTO " + TABLE_TIRS + " ("+COLUMN_TIR_ID+","+COLUMN_TIR_LOCATION+","+COLUMN_TIR_DATE+","+COLUMN_TIR_DISTANCE+","+COLUMN_TIR_COMMENT+   ") SELECT " +COLUMN_TIR_ID+","+COLUMN_TIR_LOCATION+","+COLUMN_TIR_DATE+","+COLUMN_TIR_DISTANCE+","+COLUMN_TIR_COMMENT+ " FROM TempOld"+TABLE_TIRS);
+		    	 db.execSQL("DROP TABLE TempOld"+TABLE_TIRS);
+
+				//ALTER TABLE {tableName} RENAME TO TempOldTable;
+				//CREATE TABLE {tableName} (name TEXT, COLNew {type} DEFAULT {defaultValue}, qty INTEGER, rate REAL);
+				//INSERT INTO {tableName} (name, qty, rate) SELECT name, qty, rate FROM TempOldTable;
+				//DROP TABLE TempOldTable;
+
+		    }else {
+		    	if (oldVersion < 13 ){
+		    		Log.w(DistanceSQLiteOpenHelper.class.getName(),
+		    		        "Upgrading database from version " + oldVersion + " to "
+		    		            + newVersion + ", which will destroy all old data");
+		    		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIRS);
+		    		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORES);
+		    		    onCreate(db);
+
+		    	}
+		    	
+		    }
+
+		    
+		    
 	}
 
 }

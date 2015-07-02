@@ -2,7 +2,6 @@ package com.alv.db.charte;
 
 import java.util.ArrayList;
 
-import com.alv.db.tir.Score;
 
 
 import android.content.ContentValues;

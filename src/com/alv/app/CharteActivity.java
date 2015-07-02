@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import com.alv.db.charte.CharteDataSource;
 import com.alv.db.charte.Fleche;
-import com.alv.db.distance.Distance;
-import com.alv.db.distance.DistancesDataSource;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -24,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.os.Build;
 
 public class CharteActivity extends Activity {
 	static CharteDataSource datasource;

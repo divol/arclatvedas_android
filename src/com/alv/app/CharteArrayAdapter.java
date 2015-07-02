@@ -15,13 +15,11 @@ import com.alv.app.R;
 public class CharteArrayAdapter extends ArrayAdapter<Fleche> {
 	  private final Context context;
 	  private final  List<Fleche> values;
-	  private  int selection;
 	  
 	  public CharteArrayAdapter(Context context, List<Fleche>  values) {
 		    super(context, R.layout.charte_row_layout, values);
 		    this.context = context;
 		    this.values = values;
-		    this.selection=-1;
 		  }
 	  @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
