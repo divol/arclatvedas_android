@@ -1,0 +1,16 @@
+ld directories
+**/build/*
+build/*
+bin/*
+
+# XCode user data
+**.pbxuser
+**.mode?v?
+**.perspectivev?
+**.xcuserstate
+**.xccheckout
+**/xcuserdata/*
+**.xcbaseline
+
+
+.DS_Store
