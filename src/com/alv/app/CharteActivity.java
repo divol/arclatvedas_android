@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import com.alv.db.charte.CharteDataSource;
 import com.alv.db.charte.Fleche;
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class CharteActivity extends Activity {
-	static CharteDataSource datasource;
+public class CharteActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,12 +34,12 @@ public class CharteActivity extends Activity {
 
 		setContentView(R.layout.activity_charte);
 		
-		datasource = new CharteDataSource(this.getApplicationContext());
-		 datasource.open();
+//		datasource = new CharteDataSource(this.getApplicationContext());
+//		 datasource.open();
 
 		 
 		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
+			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
@@ -69,7 +69,7 @@ public class CharteActivity extends Activity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-			datasource.close();
+			//datasource.close();
             NavUtils.navigateUpTo(this, new Intent(this, PageListActivity.class));
             return true;
         }
@@ -87,6 +87,8 @@ public class CharteActivity extends Activity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment implements OnClickListener {
+		 CharteDataSource datasource;
+
 		View rootView;
 		public PlaceholderFragment() {
 		}
@@ -94,6 +96,10 @@ public class CharteActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+			
+			datasource = new CharteDataSource(this.getActivity().getApplicationContext());
+			 datasource.open();
+
 			 rootView = inflater.inflate(R.layout.fragment_charte,
 					container, false);
 			
@@ -109,7 +115,19 @@ public class CharteActivity extends Activity {
 		}
 		
 		
-		
+		 @Override
+		  public void onResume() {
+			 
+		   
+		    super.onResume();
+		  }
+
+		  @Override
+		  public void onPause() {
+		    datasource.close();
+		    super.onPause();
+		  }
+
 		public void onClick(View view) {
 			
 			

@@ -29,7 +29,8 @@ public class TirDataSource extends DataSourceBase<Tir>{
 	  private String[] allColumnsScore = {TirSQLiteOpenHelper.COLUMN_SCORE_ID,
 			  TirSQLiteOpenHelper.COLUMN_SCORE_IDTIR	,
 			  TirSQLiteOpenHelper.COLUMN_SCORE_FLY,
-			  TirSQLiteOpenHelper.COLUMN_SCORE_POINTS};
+			  TirSQLiteOpenHelper.COLUMN_SCORE_POINTS,
+			  TirSQLiteOpenHelper.COLUMN_SCORE_ZONES};
 	  
 	public TirDataSource(Context context) {
 		super(context);
@@ -58,13 +59,20 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		  ContentValues values =data.getValues();
 		  database.update(TirSQLiteOpenHelper.TABLE_TIRS, values, TirSQLiteOpenHelper.COLUMN_TIR_ID + " = " +data.getId(), null);
 		  System.out.println("Tir update with id: " + data.getId());
+		  System.out.println("Tir update with getBlasonType: " + data.getBlasonType());
+		  ArrayList<Score> scores = data.getScores();
 		  
-		  for (Score score : data.getScores()){
-			  if (score.getId() == -1){
-				  createScore(score);
-			  }else{
-				  updateScore(score);
+		  if (scores != null){
+		  for (Score score : scores){
+			  if ( score != null){
+				  if (score.getId() == -1){
+					  createScore(score);
+				  }else{
+					  updateScore(score);
+				  }
 			  }
+			  
+		  }
 		  }
 		  System.out.println("scores in tir update with id: " + data.getId());
 		
@@ -112,7 +120,7 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		  tir.setDate(cursor.getString(2));
 		  tir.setDistance(cursor.getString(3));
 		  tir.setComment(cursor.getString(4));
-		  tir.setBlasonType(cursor.getLong(5));
+		  tir.setBlasonType(cursor.getInt(5));
 
 
 	    return tir;
@@ -210,6 +218,7 @@ public class TirDataSource extends DataSourceBase<Tir>{
 		score.setIdScore (cursor.getLong(1));
 		score.setV( Score.stringtov(cursor.getString(2)));
 		score.setPoints( Score.stringtopoints(cursor.getString(3)));
+		score.setZones(Score.stringtopoint(cursor.getString(4)));
 	    return score;
 	  }
 	

@@ -17,7 +17,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBSQLiteOpenHelper extends SQLiteOpenHelper {
 
 	  private static final String DATABASE_NAME = "archerdata.db";
-	  private static final int DATABASE_VERSION = 13;
+	  private static final int DATABASE_VERSION = 14;
 
 	public DBSQLiteOpenHelper(Context context){
 		 super(context, DATABASE_NAME, null, DATABASE_VERSION);

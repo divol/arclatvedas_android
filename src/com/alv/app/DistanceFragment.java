@@ -16,8 +16,11 @@ public class DistanceFragment extends DataFragment<Distance>  {
 		 datasource.open();
 	   
 	  }
-	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		super.onSaveInstanceState(savedInstanceState);
 
+	}
 	
 	public void showEditDialog(Distance data) {
         FragmentManager fm = this.getActivity().getSupportFragmentManager();

@@ -15,7 +15,7 @@ public class Tir implements Parcelable{
 	private String date;
 	private String distance;
 	private String comment;
-	private long blasonType;
+	private int blasonType;
 	
 	private ArrayList<Score> scores;
 	
@@ -73,10 +73,10 @@ public class Tir implements Parcelable{
 		this.comment = comment;
 	}
 
-	public long getBlasonType() {
+	public int getBlasonType() {
 		return blasonType;
 	}
-	public void setBlasonType(long blasonType) {
+	public void setBlasonType(int blasonType) {
 		this.blasonType = blasonType;
 	}
 
@@ -108,10 +108,10 @@ public int getTotal(){
         location = in.readString();
         date = in.readString();
         distance = in.readString();
-        comment=in.readString();
-        blasonType =id = in.readLong();
         scores = new ArrayList<Score>();
-      in.readTypedList(scores, Score.CREATOR);
+        in.readTypedList(scores, Score.CREATOR);
+        comment=in.readString();
+        blasonType = in.readInt();
 
 	  
   }
@@ -144,7 +144,7 @@ public int getTotal(){
 	    dest.writeString(distance);
 	    dest.writeTypedList(scores);
 	    dest.writeString(comment);
-	    dest.writeLong(blasonType);
+	    dest.writeInt(blasonType);
 
 	}
 	

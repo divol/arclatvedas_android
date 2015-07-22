@@ -74,7 +74,20 @@ public class MaterielEditFragment extends DialogFragment implements OnClickListe
 			mParam1 = (Materiel)getArguments().getParcelable(ARG_PARAM1);
 		}
 	}
+	
+	
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		super.onSaveInstanceState(savedInstanceState);
 
+		android.support.v4.app.Fragment fr = getTargetFragment();
+		
+		
+		System.out.println(fr.toString());
+		
+		
+	    setTargetFragment(null, -1);
+
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

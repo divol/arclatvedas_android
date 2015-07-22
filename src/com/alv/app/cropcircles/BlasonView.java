@@ -22,34 +22,6 @@ import android.widget.ImageView;
 
 public class BlasonView extends ImageView {
 
-	enum Blason{
-		FITA ("FITA",0) ,	
-		FITAReduce ("FITA réduit",1),
-		TriSpot ("TriSpot",2),
-		Campagne ("Campagne",3),
-		CampagneDouble ("Campagne double",4),
-		CampagneTriple ("TriSpot campagne",5),
-		Beursault ("Beursault",6),
-		Nature ("Nature",7),
-		ThreeD ("3D",8),
-		TriSpotVegas ("TriSpot Végas",9);
-		
-		
-		private String name = "";
-		private int value;
-		
-		
-		Blason(String name,int value){
-		    this.name = name;
-		    this.value = value;
-		  }
-		   public int getValue(){
-			   return this.value;
-		   }
-		  public String toString(){
-		    return name;
-		  }
-	};
 	
 	public BlasonInterface delegate;
 	float centreX;
@@ -85,7 +57,6 @@ public class BlasonView extends ImageView {
 		super(context, attrs);
 		setClickable(true);
 
-       Blason b =Blason.FITA;
        
 		greenpaint = new Paint();
 		greenpaint.setStyle(Paint.Style.STROKE);

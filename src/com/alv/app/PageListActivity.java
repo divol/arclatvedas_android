@@ -118,7 +118,7 @@ public class PageListActivity extends FragmentActivity
 		           
    				MaterielList2PlaceholderFragment fragment = new MaterielList2PlaceholderFragment();
 		            getSupportFragmentManager().beginTransaction()
-		                    .replace(R.id.fragcontainerList2, fragment)
+		                    .replace(R.id.page_detail_container, fragment)
 		                    .commit();
 		
 		        } else {
@@ -135,13 +135,22 @@ public class PageListActivity extends FragmentActivity
     			
 
 
-    		      
-    		      
+    			if (mTwoPane) {
+    				CharteActivity.PlaceholderFragment frag = new CharteActivity.PlaceholderFragment();
+    						
+		            getSupportFragmentManager().beginTransaction()
+		                    .replace(R.id.page_detail_container,frag)
+		                    .commit();
+
+    			}else{
+    	            Intent charteIntent = new Intent(this, CharteActivity.class);
+    	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
+    	            startActivity(charteIntent);
+
+    			}
     			
     			
-	            Intent charteIntent = new Intent(this, CharteActivity.class);
-	            //detailIntent.putExtra(PageDetailFragment.ARG_ITEM_ID, id);
-	            startActivity(charteIntent);
+    			
 
     			break;
     		case 6://Distances
@@ -151,9 +160,9 @@ public class PageListActivity extends FragmentActivity
 		            // adding or replacing the detail fragment using a
 		            // fragment transaction.
 		           
-    				ArrowFragment frag = new ArrowFragment();
+    				DistanceFragment frag = new DistanceFragment();
 		            getSupportFragmentManager().beginTransaction()
-		                    .replace(R.id.fragcontainerList2, frag)
+		                    .replace(R.id.page_detail_container, frag)
 		                    .commit();
 		
 		        } else {
@@ -177,7 +186,7 @@ public class PageListActivity extends FragmentActivity
 		           
     				TirFragment frag = new TirFragment();
 		            getSupportFragmentManager().beginTransaction()
-		                    .replace(R.id.fragcontainerList2, frag)
+		                    .replace(R.id.page_detail_container, frag)
 		                    .commit();
 		
 		        } else {
@@ -203,7 +212,7 @@ public class PageListActivity extends FragmentActivity
 		           
     				TirGraphFragment frag = new TirGraphFragment();
 		            getSupportFragmentManager().beginTransaction()
-		                    .replace(R.id.fragcontainerList2, frag)
+		                    .replace(R.id.page_detail_container, frag)
 		                    .commit();
 		
 		        } else {

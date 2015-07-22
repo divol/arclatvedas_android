@@ -1,6 +1,7 @@
 package com.alv.app.cropcircles;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import com.alv.app.R;
 import com.alv.app.TirActivity;
@@ -9,6 +10,7 @@ import com.alv.app.VoleeArrayAdapter;
 import com.alv.db.tir.Score;
 import com.alv.db.tir.Tir;
 import com.alv.db.tir.TirDataSource;
+import com.alv.lists.MaterielContent;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -19,6 +21,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +30,7 @@ import android.widget.TextView;
 ///ref : http://stackoverflow.com/questions/13864480/android-how-to-circular-zoom-magnify-part-of-image
 
 /// http://www.java2s.com/Code/Android/2D-Graphics/Drawacircle.htm
-public class BlasonActivity extends Activity  implements BlasonInterface,OnClickListener {
+public class BlasonActivity extends Activity  implements BlasonInterface,OnClickListener,ActionBar.OnNavigationListener {
 	BlasonView drawingImageView;
 	TirDataSource datasource;
 	Tir tir;
@@ -38,6 +41,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 	private TextView voleetext;
 	private TextView  counttext;
 
+	 Vector<String> vectBlason;
 
 
 	//	PointF zoomPos = new PointF(0,0);  
@@ -55,7 +59,6 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 		 datasource = new TirDataSource(this.getApplicationContext());
 		datasource.open();
-
 		ArrayList<Score> scores = datasource.getAllScores(tir.getId());
 		listAdapter = new VoleeArrayAdapter(this,
 				scores);
@@ -110,6 +113,48 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 		b = (Button) findViewById(R.id.blasonmoins);
 		b.setOnClickListener(this);
+		
+		
+		//menu blason
+		vectBlason = new Vector<String>();
+		vectBlason.add(Blason.FITA.toString());
+		vectBlason.add(Blason.FITAReduce.toString());
+		vectBlason.add(Blason.TriSpot.toString());
+		vectBlason.add(Blason.Campagne.toString());
+		vectBlason.add(Blason.CampagneDouble.toString());
+		vectBlason.add(Blason.CampagneTriple.toString());
+		vectBlason.add(Blason.Beursault.toString());
+
+
+		
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		// Set up the action bar to show a dropdown list.
+		//actionBar.setDisplayShowTitleEnabled(false);
+		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+
+		// Set up the dropdown list navigation in the action bar.
+		/*
+		actionBar.setListNavigationCallbacks(
+		// Specify a SpinnerAdapter to populate the dropdown list.
+				new ArrayAdapter<String>(actionBar.getThemedContext(),
+						android.R.layout.simple_list_item_1,
+						android.R.id.text1, new String[] {
+								getString(R.string.title_section1),
+								getString(R.string.title_section2),
+								getString(R.string.title_section3), }), this);
+		
+		*/
+		actionBar.setListNavigationCallbacks(
+				new ArrayAdapter<String>(
+						 actionBar.getThemedContext(),
+			                android.R.layout.simple_list_item_1,
+			                android.R.id.text1,
+			                vectBlason), this);
+
+		int toto  =(int) tir.getBlasonType();
+		System.out.println("getBlasonType = "+toto);
+	 	actionBar.setSelectedNavigationItem(toto);
 	}
 
 
@@ -233,6 +278,75 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
         
     }
 
-	
+
+	 public enum Blason{
+		FITA ("FITA",0) ,	
+		FITAReduce ("FITA réduit",1),
+		TriSpot ("TriSpot",2),
+		Campagne ("Campagne",3),
+		CampagneDouble ("Campagne double",4),
+		CampagneTriple ("TriSpot campagne",5),
+		Beursault ("Beursault",6)
+//		,Nature ("Nature",7),
+//		ThreeD ("3D",8),
+//		TriSpotVegas ("TriSpot Végas",9)
+		;
+		
+		
+		private String name = "";
+		private int value;
+
+		
+		Blason(String name,int value){
+		    this.name = name;
+		    this.value = value;
+		  }
+		   public int getValue(){
+			   return this.value;
+		   }
+		  public String toString(){
+		    return name;
+		  }
+	}
+
+
+	@Override
+	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+		// TODO Auto-generated method stub
+//		vectBlason.add(Blason.FITA.toString());
+//		vectBlason.add(Blason.FITAReduce.toString());
+//		vectBlason.add(Blason.TriSpot.toString());
+//		vectBlason.add(Blason.Campagne.toString());
+//		vectBlason.add(Blason.CampagneDouble.toString());
+//		vectBlason.add(Blason.CampagneTriple.toString());
+//		vectBlason.add(Blason.Beursault.toString());
+
+		System.out.println("itemPosition = "+itemPosition);
+		 tir.setBlasonType(itemPosition);
+		datasource.update(tir);
+		
+
+		switch(itemPosition){
+		  case 0: //FITA
+			 
+
+			  break;
+		  case 1: //FITAReduce
+
+			  break;
+		  case 2: //TriSpot
+			  break;
+		  case 3: //Campagne
+			  break;
+		  case 4: //CampagneDouble
+			  break;
+		  case 5: //CampagneTriple
+			  break;
+		  case 6: //Beursault
+			  break;
+			  
+		}
+		return true;
+	};
 
 }

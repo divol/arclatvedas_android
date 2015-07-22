@@ -5,6 +5,7 @@ import com.alv.db.materiel.MaterielDataSource;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v13.app.FragmentCompat;
 
 
 
@@ -18,7 +19,11 @@ public class MaterielFragment  extends DataFragment<Materiel>  {
 	   
 	  }
 	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		super.onSaveInstanceState(savedInstanceState);
 
+	}
 	
 	public void showEditDialog(Materiel data) {
         FragmentManager fm = this.getActivity().getSupportFragmentManager();

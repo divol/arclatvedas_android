@@ -36,6 +36,7 @@ public class TirSQLiteOpenHelper {
 	  
 	  public static final String COLUMN_SCORE_FLY = "fly";
 	  public static final String COLUMN_SCORE_POINTS = "points";
+	  public static final String COLUMN_SCORE_ZONES = "zones";
 	  
 	  // Database creation sql statement
 	  private static final String DATABASE_CREATE_TIR = "create table "
@@ -45,7 +46,7 @@ public class TirSQLiteOpenHelper {
 	      + COLUMN_TIR_DATE+ " text not null, "
 	       + COLUMN_TIR_DISTANCE+ " text not null, "
 	      + COLUMN_TIR_COMMENT+ " text not null," 
-	      + COLUMN_TIR_BLASON+ " integer DEFAULT 0, "+
+	      + COLUMN_TIR_BLASON+ " integer DEFAULT 0 "+
 	      		"); ";
 	  
 	  private static final String DATABASE_CREATE_SCORE ="create table "
@@ -53,7 +54,8 @@ public class TirSQLiteOpenHelper {
 	      + " integer primary key autoincrement, " 
 	      + COLUMN_SCORE_IDTIR+ " integer, "
 	      + COLUMN_SCORE_FLY+ " text not null, "
-	      + COLUMN_SCORE_POINTS+ " text not null); "
+	       + COLUMN_SCORE_POINTS+ " text not null, "
+	      + COLUMN_SCORE_ZONES+ " text not null); "
 	      
 	      
 	      ;
@@ -66,7 +68,7 @@ public class TirSQLiteOpenHelper {
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		    
+		    // 13 premiere version playstore, gestion meilleur de l'evolution du schemat, avant ... désolé 
 		    if (oldVersion == 13){
 		    	// ajout du champ "blason" en v. 14
 				//TODO migration vers une nouvelle table avec des nouvelles colonnes
@@ -76,6 +78,15 @@ public class TirSQLiteOpenHelper {
 		    	 db.execSQL("INSERT INTO " + TABLE_TIRS + " ("+COLUMN_TIR_ID+","+COLUMN_TIR_LOCATION+","+COLUMN_TIR_DATE+","+COLUMN_TIR_DISTANCE+","+COLUMN_TIR_COMMENT+   ") SELECT " +COLUMN_TIR_ID+","+COLUMN_TIR_LOCATION+","+COLUMN_TIR_DATE+","+COLUMN_TIR_DISTANCE+","+COLUMN_TIR_COMMENT+ " FROM TempOld"+TABLE_TIRS);
 		    	 db.execSQL("DROP TABLE TempOld"+TABLE_TIRS);
 
+		    	 
+		    	 // ajout des zones de score (mono, bi, tristop et de la position ABCD...)
+		    	 db.execSQL("ALTER TABLE " + TABLE_SCORES + " RENAME TO TempOld"+TABLE_SCORES);
+		    	 db.execSQL(DATABASE_CREATE_SCORE);
+		    	 db.execSQL("INSERT INTO " + TABLE_SCORES + " ("+COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+   ") SELECT " +COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+ " FROM TempOld"+TABLE_SCORES);
+		    	 db.execSQL("DROP TABLE TempOld"+TABLE_SCORES);
+		    	 
+		    	 
+		    	 
 				//ALTER TABLE {tableName} RENAME TO TempOldTable;
 				//CREATE TABLE {tableName} (name TEXT, COLNew {type} DEFAULT {defaultValue}, qty INTEGER, rate REAL);
 				//INSERT INTO {tableName} (name, qty, rate) SELECT name, qty, rate FROM TempOldTable;

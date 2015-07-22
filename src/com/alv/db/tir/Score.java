@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 
 import android.content.ContentValues;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -23,7 +24,7 @@ public class Score implements Parcelable{
 	private ArrayList<Integer> v;
     private ArrayList<PointF> points;
 	
-    private ArrayList<PointF> zones;
+    private ArrayList<Point> zones;
    /*
      (pour les trispot par exemple)
     (1,0) = haut;
@@ -62,6 +63,13 @@ public class Score implements Parcelable{
 		this.points = points;
 	}
 	
+	public ArrayList<Point> getZones() {
+		return zones;
+	}
+	public void setZones(ArrayList<Point> zones) {
+		this.zones = zones;
+	}
+
 	
 	
 	public int getTotal(){
@@ -80,6 +88,7 @@ public class Score implements Parcelable{
 	public Score(long idTir){
 		v = new  ArrayList<Integer>();
 		points = new ArrayList<PointF>();
+		zones = new ArrayList<Point>();
 		id=-1;
 		idScore = idTir;
 	}
@@ -90,6 +99,7 @@ public class Score implements Parcelable{
 	        idScore = in.readLong();
 	        v=  in.readArrayList( Integer.class.getClassLoader());
 	        points = in.readArrayList(PointF.class.getClassLoader());
+	        zones = in.readArrayList(Point.class.getClassLoader());
 	  }
 	 
 	 
@@ -97,6 +107,7 @@ public class Score implements Parcelable{
 		if (v.size() <  NOMBREMAX){
 			v.add(score);
 			points.add(new PointF(0,0));
+			zones.add(new Point(0,0));
 			return true;
 		}
 		return false;
@@ -106,6 +117,17 @@ public class Score implements Parcelable{
 		if (v.size() <  NOMBREMAX){
 			v.add(score);
 			points.add(new PointF(point.x,point.y));
+			zones.add(new Point(0,0));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean addScore(int score,PointF point, Point zone){
+		if (v.size() <  NOMBREMAX){
+			v.add(score);
+			points.add(new PointF(point.x,point.y));
+			zones.add(new Point(zone.x,zone.y));
 			return true;
 		}
 		return false;
@@ -134,6 +156,19 @@ public class Score implements Parcelable{
 		return res;
 	}
 	
+	
+	public Point getZoneAt(int fleche){
+		
+		Point res=new Point(0,0);
+		if (zones != null){
+			if (fleche <zones.size()){
+				res = zones.get(fleche);
+			}
+		}
+		return res;
+	}
+
+
 	public void deleteLast(){
 		
 		if (v.size() != 0){
@@ -142,6 +177,10 @@ public class Score implements Parcelable{
 		if (points.size() != 0){
 			points.remove(points.size()-1);
 		}
+		if (zones.size() != 0){
+			zones.remove(zones.size()-1);
+		}
+
 	}
 	
 	public static ArrayList<Integer> stringtov(String jsonarray){
@@ -215,6 +254,48 @@ public class Score implements Parcelable{
 		return arr.toString();
 	}
 	
+	public static ArrayList<Point> stringtopoint(String jsonarray){
+		ArrayList<Point> liste=null;
+		
+		//System.out.println("stringtov="+jsonarray);
+		try {
+			JSONArray json = new JSONArray(jsonarray);
+			liste = new  ArrayList<Point>();
+			for (int index=0 ; index<json.length();index++){
+				
+				JSONObject jsonpoint = json.optJSONObject(index);
+				
+				Point p = new Point();
+				p.set( jsonpoint.getInt("x"),jsonpoint.getInt("y"));
+				liste.add(p);
+		      }
+			}
+		     catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		
+		return liste;
+	}
+
+	
+	
+	public static String pointtostring(ArrayList<Point> liste){
+		JSONArray arr = new JSONArray();
+		for (Point val: liste){
+			JSONObject jsonpoint = new JSONObject();
+			try {
+				jsonpoint.put("x", val.x);
+				jsonpoint.put("y", val.y);
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			arr.put(jsonpoint);
+		}
+		//System.out.println("vtostring="+arr.toString());
+		return arr.toString();
+	}
+	
 	
 	public ContentValues getValues(){
 		  
@@ -223,6 +304,9 @@ public class Score implements Parcelable{
 		values.put(TirSQLiteOpenHelper.COLUMN_SCORE_IDTIR, idScore);
 		values.put(TirSQLiteOpenHelper.COLUMN_SCORE_FLY, vtostring(v));
 		values.put(TirSQLiteOpenHelper.COLUMN_SCORE_POINTS, pointstostring(points));
+		values.put(TirSQLiteOpenHelper.COLUMN_SCORE_ZONES, pointtostring(zones));
+
+		
 		return values;
 		
 	}
@@ -237,8 +321,10 @@ public class Score implements Parcelable{
 		dest.writeLong(idScore);
 		dest.writeList(v);
 		dest.writeList(points);
+		dest.writeList(zones);
 	}
 	
+
 	public static final Parcelable.Creator<Score> CREATOR = new Parcelable.Creator<Score>() {
 		   public Score createFromParcel(Parcel in) {
 		       return new Score(in); 
