@@ -68,7 +68,7 @@ ActionBar.OnNavigationListener {
 			                MaterielContent.MATERIEL_TYPES), this);
 		
 		 
-		 
+		
 		 
 		return rootView;
 	}
@@ -156,7 +156,20 @@ ActionBar.OnNavigationListener {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	
+	@Override
+	  public void onResume() {
+		 
+		final ActionBar actionBar = getActivity().getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST); // montrer spinner
+	    super.onResume();
+	  }
+
+	  @Override
+	  public void onPause() {
+		  final ActionBar actionBar = getActivity().getActionBar();
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD); // "cacher" spinner
+	    super.onPause();
+	  }
 	
 	/**
 	 * A placeholder fragment containing a simple view.

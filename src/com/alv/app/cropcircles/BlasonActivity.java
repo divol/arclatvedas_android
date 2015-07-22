@@ -118,12 +118,12 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		//menu blason
 		vectBlason = new Vector<String>();
 		vectBlason.add(Blason.FITA.toString());
-		vectBlason.add(Blason.FITAReduce.toString());
-		vectBlason.add(Blason.TriSpot.toString());
-		vectBlason.add(Blason.Campagne.toString());
-		vectBlason.add(Blason.CampagneDouble.toString());
-		vectBlason.add(Blason.CampagneTriple.toString());
-		vectBlason.add(Blason.Beursault.toString());
+//		vectBlason.add(Blason.FITAReduce.toString());
+//		vectBlason.add(Blason.TriSpot.toString());
+//		vectBlason.add(Blason.Campagne.toString());
+//		vectBlason.add(Blason.CampagneDouble.toString());
+//		vectBlason.add(Blason.CampagneTriple.toString());
+//		vectBlason.add(Blason.Beursault.toString());
 
 
 		
