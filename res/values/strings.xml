@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Arc Lat\'Védas</string>
+    <string name="title_page_detail">Details</string>
+    <string name="title_activity_materiel">Hardware</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="hello_world">WARNING, the database contains only a subset of arrow models (mainly Easton™ and CarbonExpress™ and  Only for recurve, sorry…) In any case, please ask advise before buying your bow </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_materiel_global">MaterielGlobalActivity</string>
+    <string name="title_activity_materiel_list2">MaterielList2</string>
+    <string name="title_activity_distance">Distance</string>
+    <string name="title_activity_tir">Shoots</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrows">Arrows</string>
+    <string name="nomfleche">name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="length">Size</string>
+    <string name="spin">Spin</string>
+    <string name="feather">Feather</string>
+    <string name="point">Arrow head</string>
+    <string name="comment">Comment</string>
+    <string name="Ajouter">Add</string>
+    <string name="Effacer">Clear</string>
+    <string name="distance">Distance</string>
+    <string name="name">Name</string>
+    <string name="unit">Unit</string>
+    <string name="_12">12</string>
+    <string name="Edit">Edit</string>
+    <string name="materiel">Hardware</string>
+    <string name="sn">SN/</string>
+    <string name="Tir">Shoot</string>
+    <string name="localisation">Localization</string>
+    <string name="date">Date</string>
+    <string name="voir">See</string>
+    <string name="scores">Scores</string>
+    <string name="graph">Chart</string>
+    <string name="graphique">Chart</string>
+    <string name="title_activity_tir_graph">Chart</string>
+    <string name="title_activity_Circle">Face</string>
+    <string name="title_activity_charte">Arrow selector</string>
+    <string name="informations">Informations</string>
+    <string name="mandats">Competions information</string>
+    <string name="photos">Photos</string>
+    <string name="about">About Arc Lat\'Védas sport club</string>
+    <string name="size">Size: </string>
+    <string name="strength">Strength: </string>
+    <string name="lookup">lookup</string>
+    
+
+</resources>
