@@ -71,7 +71,6 @@ public class PageListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<MainContent.DummyItem>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,

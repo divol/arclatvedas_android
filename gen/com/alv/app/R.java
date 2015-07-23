@@ -1443,6 +1443,7 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0c000b;
+        public static final int about=0x7f0c0039;
         public static final int action_settings=0x7f0c0014;
         public static final int app_name=0x7f0c000d;
         public static final int arrows=0x7f0c001a;
@@ -1455,16 +1456,22 @@ containing a value of this type.
         public static final int graphique=0x7f0c0032;
         public static final int hello_blank_fragment=0x7f0c0019;
         public static final int hello_world=0x7f0c0013;
+        public static final int informations=0x7f0c0036;
         public static final int length=0x7f0c001e;
         public static final int localisation=0x7f0c002d;
+        public static final int lookup=0x7f0c003c;
+        public static final int mandats=0x7f0c0037;
         public static final int materiel=0x7f0c002a;
         public static final int name=0x7f0c0026;
         public static final int nomfleche=0x7f0c001b;
         public static final int ok=0x7f0c001c;
+        public static final int photos=0x7f0c0038;
         public static final int point=0x7f0c0021;
         public static final int scores=0x7f0c0030;
+        public static final int size=0x7f0c003a;
         public static final int sn=0x7f0c002b;
         public static final int spin=0x7f0c001f;
+        public static final int strength=0x7f0c003b;
         public static final int title_activity_Circle=0x7f0c0034;
         public static final int title_activity_charte=0x7f0c0035;
         public static final int title_activity_distance=0x7f0c0017;

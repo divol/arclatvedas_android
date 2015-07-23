@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import com.alv.app.MyApplication;
+import com.alv.app.R;
+
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
@@ -29,9 +32,12 @@ public class MaterielContent {
     public static Map<String, DummyItem> MATERIEL_ITEM_MAP = new HashMap<String, DummyItem>();
 
     static {
-        // Add 3 sample items.
-        addItem(new DummyItem("1", "Matériel",""));
-        addItem(new DummyItem("2", "Fléches",""));
+    	String materiel = MyApplication.getContext().getResources().getString(R.string.materiel);
+
+    	String arrows = MyApplication.getContext().getResources().getString(R.string.arrows);
+
+        addItem(new DummyItem("1", materiel,""));
+        addItem(new DummyItem("2", arrows,""));
     }
 
     private static void addItem(DummyItem item) {

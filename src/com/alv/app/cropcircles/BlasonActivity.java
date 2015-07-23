@@ -10,7 +10,6 @@ import com.alv.app.VoleeArrayAdapter;
 import com.alv.db.tir.Score;
 import com.alv.db.tir.Tir;
 import com.alv.db.tir.TirDataSource;
-import com.alv.lists.MaterielContent;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -153,6 +152,9 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 			                vectBlason), this);
 
 		int toto  =(int) tir.getBlasonType();
+		if (toto >= vectBlason.size()) {
+			toto = 0; // ^^ for future use ...
+		}
 		System.out.println("getBlasonType = "+toto);
 	 	actionBar.setSelectedNavigationItem(toto);
 	}

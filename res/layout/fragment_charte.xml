@@ -21,7 +21,7 @@
         android:layout_alignLeft="@+id/textViewHeader"
         android:layout_below="@+id/textViewHeader"
         android:layout_marginTop="22dp"
-        android:text="Taille:"
+        android:text="@string/size"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_alignLeft="@+id/textViewTaille"
         android:layout_below="@+id/textViewTaille"
         android:layout_marginTop="20dp"
-        android:text="Puissance:"
+        android:text="@string/strength"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -64,7 +64,7 @@
         android:layout_alignRight="@+id/editTextPuissance"
         android:layout_below="@+id/editTextPuissance"
         android:layout_marginTop="15dp"
-        android:text="Chercher" />
+        android:text="@string/lookup" />
 
     <ListView
         android:id="@+id/listViewResult"

@@ -42,5 +42,12 @@
     <string name="title_activity_tir_graph">graphique</string>
     <string name="title_activity_Circle">Blason</string>
     <string name="title_activity_charte">Sélecteur de flèche</string>
-
+    <string name="informations">Les informations</string>
+    <string name="mandats">Les mandats</string>
+    <string name="photos">Photos</string>
+    <string name="about">À propos du club Arc Lat\'Védas</string>
+    <string name="size">Taille: </string>
+    <string name="strength">Puissance: </string>
+    <string name="lookup">Chercher</string>
+    
 </resources>
