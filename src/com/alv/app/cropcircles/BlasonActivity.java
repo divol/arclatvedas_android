@@ -14,6 +14,7 @@ import com.alv.db.tir.TirDataSource;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -30,7 +31,7 @@ import android.widget.TextView;
 
 /// http://www.java2s.com/Code/Android/2D-Graphics/Drawacircle.htm
 public class BlasonActivity extends Activity  implements BlasonInterface,OnClickListener,ActionBar.OnNavigationListener {
-	BlasonView drawingImageView;
+	AbstractBlasonView drawingImageView=null;
 	TirDataSource datasource;
 	Tir tir;
 	VoleeArrayAdapter listAdapter;
@@ -69,18 +70,6 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		setContentView(R.layout.activity_circleview);
 		
 		
-		LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-		
-		drawingImageView = new  BlasonView(this,null);
-		drawingImageView.setLayoutParams(params);
-		layout.addView(drawingImageView);
-		
-		
-		//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
-
-		drawingImageView.delegate = this;
 
 
 		//action bar
@@ -98,20 +87,12 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		counttext = (TextView)findViewById(R.id.countText);
 		counttext.setText(""+ listAdapter.getCount());
 		
-		
-		for (Score score : scores){
-			for (int i = 0 ; i < 6 ; i++){
-				PointF p = score.getPointAt(i);
-				drawingImageView.addPoint(p);
-			}
-		}
-		drawingImageView.invalidate();
-		
 		Button b = (Button) findViewById(R.id.blasonok);
 		b.setOnClickListener(this);
 
 		b = (Button) findViewById(R.id.blasonmoins);
 		b.setOnClickListener(this);
+
 		
 		
 		//menu blason
@@ -128,22 +109,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		// Set up the action bar to show a dropdown list.
-		//actionBar.setDisplayShowTitleEnabled(false);
-		//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-		// Set up the dropdown list navigation in the action bar.
-		/*
-		actionBar.setListNavigationCallbacks(
-		// Specify a SpinnerAdapter to populate the dropdown list.
-				new ArrayAdapter<String>(actionBar.getThemedContext(),
-						android.R.layout.simple_list_item_1,
-						android.R.id.text1, new String[] {
-								getString(R.string.title_section1),
-								getString(R.string.title_section2),
-								getString(R.string.title_section3), }), this);
-		
-		*/
 		actionBar.setListNavigationCallbacks(
 				new ArrayAdapter<String>(
 						 actionBar.getThemedContext(),
@@ -157,6 +123,35 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		}
 		System.out.println("getBlasonType = "+toto);
 	 	actionBar.setSelectedNavigationItem(toto);
+	 	
+	 	
+		//drawingImageView
+				LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+				
+				drawingImageView = new  BlasonView(this,null);
+				drawingImageView.setLayoutParams(params);
+				layout.addView(drawingImageView);
+				
+				
+				//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+
+				drawingImageView.delegate = this;
+				
+				
+		for (Score score : scores){
+			for (int i = 0 ; i < 6 ; i++){
+				PointF p = score.getPointAt(i);
+				Point zone = score.getZoneAt(i);
+				drawingImageView.addPoint(p,zone);
+			}
+		}
+		drawingImageView.invalidate();
+		
+		
+		
+
 	}
 
 
@@ -188,7 +183,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 
 
-	public void managePanEnd(PointF p, int value){
+	public void managePanEnd(PointF p, int value, Point zone){
 		if (curScore != null) {
 			if (curScore.addScore(value,p)){
 				System.out.println("score1="+value);
@@ -198,7 +193,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 					System.out.println("score2="+value);
 	
 					listAdapter.notifyDataSetChanged();
-					drawingImageView.addPoint(p);
+					drawingImageView.addPoint(p,zone);
 					total.setText(""+ listAdapter.getTotal());
 				}else{
 					System.out.println("datasource NOT ok ");
@@ -314,7 +309,6 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-		// TODO Auto-generated method stub
 //		vectBlason.add(Blason.FITA.toString());
 //		vectBlason.add(Blason.FITAReduce.toString());
 //		vectBlason.add(Blason.TriSpot.toString());

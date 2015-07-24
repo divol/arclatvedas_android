@@ -11,82 +11,31 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 
 //http://developer.android.com/training/custom-views/create-view.html
 
 
-public class BlasonView extends ImageView {
-
+public class BlasonView extends AbstractBlasonView {
 	
-	public BlasonInterface delegate;
 	float centreX;
 	float centreY;
 	PointF centerPoint=new PointF(0,0);
-	float delta;
-
-	float decalageloupe = 50;
-
-	float [] radiusCircles;
-
-	int[] colors;
-	int[] colorlines;
+	
 	int[] scores = {100,10,9,8,7,6,5,4,3,2,1};
-	PointF zoomPos = new PointF();
-	PointF start = new PointF();
-	PointF mid = new PointF();
-	Boolean zooming;
-	BitmapShader mShader;
-	Paint mPaint;
-	int barheight;
-	Matrix mat = new Matrix();
-	Paint greenpaint;
-	Paint blackpaint;
-	Paint whitepaint;
-	float taille;
 
 
-	//impacts
-	Vector<PointF> impacts = new Vector<PointF>() ;
 
+
+	 
+	 
 	public BlasonView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		setClickable(true);
-
-       
-		greenpaint = new Paint();
-		greenpaint.setStyle(Paint.Style.STROKE);
-
-		greenpaint.setColor(Color.GREEN);
-
-		blackpaint = new Paint();
-		blackpaint.setStyle(Paint.Style.STROKE);
-
-		blackpaint.setColor(Color.BLACK);
-
-		whitepaint = new Paint();
-		whitepaint.setStyle(Paint.Style.STROKE);
-		whitepaint.setColor(Color.WHITE);
-
-
-		setScaleType(ScaleType.MATRIX);
-		if (this.isInEditMode()){
-			return;
-		}
-
-
-		Resources resources = context.getResources();
-		int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-		if (resourceId > 0) {
-			barheight =  resources.getDimensionPixelSize(resourceId);
-		}
-		barheight =  0;
-
-		System.out.println("barheight="+barheight);
+		
 
 		radiusCircles = new float[11];
 
@@ -116,14 +65,8 @@ public class BlasonView extends ImageView {
 		colorlines[8] = Color.BLACK;
 		colorlines[9] = Color.BLACK;
 		colorlines[10] = Color.BLACK;
-		Activity act = (Activity)context;
-
-		Bitmap bitmap = Bitmap.createBitmap((int) act.getWindowManager()
-				.getDefaultDisplay().getWidth(), (int) act.getWindowManager()
-				.getDefaultDisplay().getHeight(), Bitmap.Config.ARGB_8888);
-
+		
 		Canvas canvas = new Canvas(bitmap);
-		this.setImageBitmap(bitmap);
 
 		// Circle
 		 taille = (float) Math.min(bitmap.getWidth(),bitmap.getHeight());
@@ -181,26 +124,9 @@ public class BlasonView extends ImageView {
 		canvas.drawCircle(x, y, lastradius, paint);
 
 
-		zoomPos = new PointF(0,0);
-		zooming=false;
-
-
-
-		mShader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
-
-		mPaint = new Paint();
-		mPaint.setShader(mShader);
 
 	}
 
-	public static boolean pointIntoCircle(float centX,float centY, float radius, float ptx, float pty){
-
-		float a = centX - ptx;
-		float b = centY - pty;
-
-		double c = Math.sqrt( a*a + b*b );
-		return (c <= radius);
-	}
 
 
 
@@ -262,11 +188,11 @@ public class BlasonView extends ImageView {
 		case MotionEvent.ACTION_UP: 
 			zooming = false;
 			PointF p = new PointF();
-			
+			Point zone = new Point();
 			// normalisation du point
 			p.set(zoomPos.x/taille,zoomPos.y/taille);
-		
-			delegate.managePanEnd(p,getScoreForPoint(zoomPos.x,zoomPos.y));
+			zone.set(0, 0);
+			delegate.managePanEnd(p,getScoreForPoint(zoomPos.x,zoomPos.y),zone);
 			break; 
 		case MotionEvent.ACTION_CANCEL:
 			zooming = false;
@@ -282,21 +208,8 @@ public class BlasonView extends ImageView {
 		return true; 
 	} 
 
-	private void culcMidPoint(PointF midPoint, MotionEvent event) {
-		float x = event.getX(0) + event.getX(1);
-		float y = event.getY(0) + event.getY(1);
-		midPoint.set(x / 2, y / 2);
-	}
 
 
-	public static PointF PointOnCircle(float radius, float angleInDegrees, PointF origin)
-	{
-		// Convert from degrees to radians via multiplication by PI/180        
-		float x = (float)(radius * Math.cos(angleInDegrees * Math.PI / 180F)) + origin.x;
-		float y = (float)(radius * Math.sin(angleInDegrees * Math.PI / 180F)) + origin.y;
-
-		return new PointF(x, y);
-	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -327,26 +240,5 @@ public class BlasonView extends ImageView {
 	}
 
 
-	//impacts part
-
 	
-
-    public void addPoint(PointF pt){
-		PointF p = new PointF();
-		if ((pt.x != pt.y) && (pt.y!= 0f)){
-		// normalisation du point
-			p.set(pt.x,pt.y);
-			impacts.addElement(p);
-		}
-		invalidate();
-	}
-
-    public void removeLastPoint(){
-		if (impacts.size() > 0){
-			impacts.removeElementAt(impacts.size()-1);
-		}
-
-		invalidate();
-	}
-
 }

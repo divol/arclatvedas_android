@@ -1,5 +1,6 @@
 package com.alv.app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -118,5 +119,7 @@ public class VoleeArrayAdapter extends ArrayAdapter<Score> implements
 		}
 		return total;
 	}
-
+	public ArrayList<Score> getValues(){
+		return (ArrayList<Score>) values;
+	}
 }
