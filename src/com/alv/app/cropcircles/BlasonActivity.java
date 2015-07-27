@@ -41,7 +41,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 	private TextView voleetext;
 	private TextView  counttext;
 
-	 Vector<String> vectBlason;
+	Vector<String> vectBlason;
 
 
 	//	PointF zoomPos = new PointF(0,0);  
@@ -55,9 +55,9 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		 tir = getIntent().getParcelableExtra(TirEditDialog.ARG_ITEM_ID);
+		tir = getIntent().getParcelableExtra(TirEditDialog.ARG_ITEM_ID);
 
-		 datasource = new TirDataSource(this.getApplicationContext());
+		datasource = new TirDataSource(this.getApplicationContext());
 		datasource.open();
 		ArrayList<Score> scores = datasource.getAllScores(tir.getId());
 		listAdapter = new VoleeArrayAdapter(this,
@@ -65,11 +65,11 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 		curScore = listAdapter.getItem(scores.size()-1);
 
-        
-      
+
+
 		setContentView(R.layout.activity_circleview);
-		
-		
+
+
 
 
 		//action bar
@@ -86,60 +86,123 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 
 		counttext = (TextView)findViewById(R.id.countText);
 		counttext.setText(""+ listAdapter.getCount());
-		
+
 		Button b = (Button) findViewById(R.id.blasonok);
 		b.setOnClickListener(this);
 
 		b = (Button) findViewById(R.id.blasonmoins);
 		b.setOnClickListener(this);
 
-		
-		
+
+
 		//menu blason
 		vectBlason = new Vector<String>();
 		vectBlason.add(Blason.FITA.toString());
-//		vectBlason.add(Blason.FITAReduce.toString());
-//		vectBlason.add(Blason.TriSpot.toString());
-//		vectBlason.add(Blason.Campagne.toString());
-//		vectBlason.add(Blason.CampagneDouble.toString());
-//		vectBlason.add(Blason.CampagneTriple.toString());
-//		vectBlason.add(Blason.Beursault.toString());
+		vectBlason.add(Blason.FITAReduce.toString());
+		 		vectBlason.add(Blason.TriSpot.toString());
+		//		vectBlason.add(Blason.Campagne.toString());
+		//		vectBlason.add(Blason.CampagneDouble.toString());
+		//		vectBlason.add(Blason.CampagneTriple.toString());
+		//		vectBlason.add(Blason.Beursault.toString());
 
 
-		
+
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
 		actionBar.setListNavigationCallbacks(
 				new ArrayAdapter<String>(
-						 actionBar.getThemedContext(),
-			                android.R.layout.simple_list_item_1,
-			                android.R.id.text1,
-			                vectBlason), this);
+						actionBar.getThemedContext(),
+						android.R.layout.simple_list_item_1,
+						android.R.id.text1,
+						vectBlason), this);
 
 		int toto  =(int) tir.getBlasonType();
 		if (toto >= vectBlason.size()) {
 			toto = 0; // ^^ for future use ...
 		}
 		System.out.println("getBlasonType = "+toto);
-	 	actionBar.setSelectedNavigationItem(toto);
-	 	
-	 	
-		//drawingImageView
-				LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
-				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-				
-				drawingImageView = new  BlasonView(this,null);
-				drawingImageView.setLayoutParams(params);
-				layout.addView(drawingImageView);
-				
-				
-				//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+		
+		buildBlason(toto);
+		actionBar.setSelectedNavigationItem(toto);
 
-				drawingImageView.delegate = this;
-				
-				
+//		//drawingImageView
+//		LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
+//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//				LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//		drawingImageView = new  BlasonView(this,null);
+//		drawingImageView.setLayoutParams(params);
+//		layout.addView(drawingImageView);
+//
+//
+//		//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+//
+//		drawingImageView.delegate = this;
+//
+//
+//		for (Score score : scores){
+//			for (int i = 0 ; i < 6 ; i++){
+//				PointF p = score.getPointAt(i);
+//				Point zone = score.getZoneAt(i);
+//				drawingImageView.addPoint(p,zone);
+//			}
+//		}
+//		drawingImageView.invalidate();
+
+
+
+
+	}
+
+
+	private void buildBlason(int blasontype){
+		
+		//drawingImageView
+		LinearLayout layout = (LinearLayout) this.findViewById(R.id.conteneurview);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+		
+		if (drawingImageView != null) {
+			layout.removeView(drawingImageView);
+
+		}
+		switch(blasontype){
+		case 0: //FITA
+			drawingImageView = new  BlasonView(this,null);
+
+
+			break;
+		case 1: //FITAReduce
+			drawingImageView = new  ReducedBlasonView(this,null);
+
+			break;
+		case 2: //TriSpot
+			drawingImageView = new  TrispotView(this,null);
+			break;
+		case 3: //Campagne
+			break;
+		case 4: //CampagneDouble
+			break;
+		case 5: //CampagneTriple
+			break;
+		case 6: //Beursault
+			break;
+
+		}
+
+		
+		drawingImageView.setLayoutParams(params);
+		layout.addView(drawingImageView);
+
+
+		//drawingImageView = (BlasonView) this.findViewById(R.id.DrawingImageView);
+
+		drawingImageView.delegate = this;
+
+		ArrayList<Score> scores  =listAdapter.getValues();
+		
 		for (Score score : scores){
 			for (int i = 0 ; i < 6 ; i++){
 				PointF p = score.getPointAt(i);
@@ -148,13 +211,10 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 			}
 		}
 		drawingImageView.invalidate();
-		
-		
-		
 
+
+		
 	}
-
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -191,7 +251,7 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 					System.out.println("datasource= ok ");
 					datasource.updateScore(curScore);
 					System.out.println("score2="+value);
-	
+
 					listAdapter.notifyDataSetChanged();
 					drawingImageView.addPoint(p,zone);
 					total.setText(""+ listAdapter.getTotal());
@@ -204,9 +264,9 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		}
 		refreshVolee();
 	}
-	
-	
-	
+
+
+
 	public void onClick(View view) {
 
 		switch (view.getId()) {
@@ -228,55 +288,55 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 					datasource.updateScore(curScore);
 					listAdapter.notifyDataSetChanged();
 					drawingImageView.removeLastPoint();
-			}
-				
+				}
+
 			}
 			break;
 
-		
+
 
 		}
-		
+
 		listAdapter.notifyDataSetChanged();
 		total.setText(""+ listAdapter.getTotal());
 		refreshVolee();
 	}
 
-	
-    void refreshVolee(){
-    	voleetext.setText("");
-        String str = "";
-        
-        for (int i = 0 ; i < 6 ; i++){
-            //une constante pour le 6 !!
-            int points =curScore.getScoreAt(i);
-            if (points >= 0) {
-                
-                if (points == 100) {
-                    str += "X";
-                }else  if (points == 0) {
-                    str += "M";
-                    
-                } else {
-                    str += points;
-                }
-                
-                if (i < 6-1) {
-                    str += "-";
-                }
-                
-            }else{
-                 str += "*";
-            }
-            
-        }
-        voleetext.setText(str);
 
-        
-    }
+	void refreshVolee(){
+		voleetext.setText("");
+		String str = "";
+
+		for (int i = 0 ; i < 6 ; i++){
+			//une constante pour le 6 !!
+			int points =curScore.getScoreAt(i);
+			if (points >= 0) {
+
+				if (points == 100) {
+					str += "X";
+				}else  if (points == 0) {
+					str += "M";
+
+				} else {
+					str += points;
+				}
+
+				if (i < 6-1) {
+					str += "-";
+				}
+
+			}else{
+				str += "*";
+			}
+
+		}
+		voleetext.setText(str);
 
 
-	 public enum Blason{
+	}
+
+
+	public enum Blason{
 		FITA ("FITA",0) ,	
 		FITAReduce ("FITA rŽduit",1),
 		TriSpot ("TriSpot",2),
@@ -284,63 +344,65 @@ public class BlasonActivity extends Activity  implements BlasonInterface,OnClick
 		CampagneDouble ("Campagne double",4),
 		CampagneTriple ("TriSpot campagne",5),
 		Beursault ("Beursault",6)
-//		,Nature ("Nature",7),
-//		ThreeD ("3D",8),
-//		TriSpotVegas ("TriSpot VŽgas",9)
+		//		,Nature ("Nature",7),
+		//		ThreeD ("3D",8),
+		//		TriSpotVegas ("TriSpot VŽgas",9)
 		;
-		
-		
+
+
 		private String name = "";
 		private int value;
 
-		
+
 		Blason(String name,int value){
-		    this.name = name;
-		    this.value = value;
-		  }
-		   public int getValue(){
-			   return this.value;
-		   }
-		  public String toString(){
-		    return name;
-		  }
+			this.name = name;
+			this.value = value;
+		}
+		public int getValue(){
+			return this.value;
+		}
+		public String toString(){
+			return name;
+		}
 	}
 
 
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-//		vectBlason.add(Blason.FITA.toString());
-//		vectBlason.add(Blason.FITAReduce.toString());
-//		vectBlason.add(Blason.TriSpot.toString());
-//		vectBlason.add(Blason.Campagne.toString());
-//		vectBlason.add(Blason.CampagneDouble.toString());
-//		vectBlason.add(Blason.CampagneTriple.toString());
-//		vectBlason.add(Blason.Beursault.toString());
+		//		vectBlason.add(Blason.FITA.toString());
+		//		vectBlason.add(Blason.FITAReduce.toString());
+		//		vectBlason.add(Blason.TriSpot.toString());
+		//		vectBlason.add(Blason.Campagne.toString());
+		//		vectBlason.add(Blason.CampagneDouble.toString());
+		//		vectBlason.add(Blason.CampagneTriple.toString());
+		//		vectBlason.add(Blason.Beursault.toString());
 
 		System.out.println("itemPosition = "+itemPosition);
-		 tir.setBlasonType(itemPosition);
-		datasource.update(tir);
-		
-
-		switch(itemPosition){
-		  case 0: //FITA
-			 
-
-			  break;
-		  case 1: //FITAReduce
-
-			  break;
-		  case 2: //TriSpot
-			  break;
-		  case 3: //Campagne
-			  break;
-		  case 4: //CampagneDouble
-			  break;
-		  case 5: //CampagneTriple
-			  break;
-		  case 6: //Beursault
-			  break;
-			  
+		if (itemPosition != tir.getBlasonType()){
+			tir.setBlasonType(itemPosition);
+			datasource.update(tir);
+	
+			buildBlason(itemPosition);
+			switch(itemPosition){
+			case 0: //FITA
+	
+	
+				break;
+			case 1: //FITAReduce
+	
+				break;
+			case 2: //TriSpot
+				break;
+			case 3: //Campagne
+				break;
+			case 4: //CampagneDouble
+				break;
+			case 5: //CampagneTriple
+				break;
+			case 6: //Beursault
+				break;
+	
+			}
 		}
 		return true;
 	};

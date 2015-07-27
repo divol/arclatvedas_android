@@ -17,13 +17,13 @@ import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 
 public abstract class AbstractBlasonView extends ImageView{
 	public BlasonInterface delegate;
-	
-	float delta;
+	int nombrezone=0;
 
+	float delta;
+    float deltaX =0;
 	float decalageloupe = 50;
 
 	float [] radiusCircles;
@@ -88,7 +88,7 @@ public abstract class AbstractBlasonView extends ImageView{
 
 		Activity act = (Activity)context;
 
-		Bitmap bitmap = Bitmap.createBitmap((int) act.getWindowManager()
+		 bitmap = Bitmap.createBitmap((int) act.getWindowManager()
 				.getDefaultDisplay().getWidth(), (int) act.getWindowManager()
 				.getDefaultDisplay().getHeight(), Bitmap.Config.ARGB_8888);
 
@@ -155,5 +155,35 @@ public abstract class AbstractBlasonView extends ImageView{
 		invalidate();
 	}
     
-    public abstract int getScoreForPoint(float ptX, float ptY);
+    
+    @Override
+	protected void onDraw(Canvas canvas) {
+
+		super.onDraw(canvas);
+		if (this.isInEditMode()){
+			return;
+		}
+
+		for (PointF pinpact : impacts){
+			blackpaint.setStyle(Paint.Style.FILL);
+			canvas.drawCircle(deltaX + pinpact.x*taille, pinpact.y*taille, 3, blackpaint);
+			canvas.drawCircle(deltaX + pinpact.x*taille, pinpact.y*taille, 4, whitepaint);
+
+		}
+
+		if (zooming) {
+
+			canvas.drawCircle(zoomPos.x, zoomPos.y-decalageloupe , 50, mPaint);
+			canvas.drawCircle(zoomPos.x, zoomPos.y-decalageloupe, 50, greenpaint);
+
+			//reticule
+			canvas.drawLine(zoomPos.x-8, zoomPos.y-decalageloupe, zoomPos.x+8, zoomPos.y-decalageloupe, greenpaint);
+			canvas.drawLine(zoomPos.x, zoomPos.y-(decalageloupe-8), zoomPos.x, zoomPos.y-(decalageloupe +8), greenpaint);
+
+		}
+		
+	}
+    
+    
+    public abstract Point getScoreForPoint(float ptX, float ptY);
 }

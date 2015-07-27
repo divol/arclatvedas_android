@@ -1,6 +1,6 @@
 package com.alv.app.cropcircles;
 
-
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,71 +8,26 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 
-//http://developer.android.com/training/custom-views/create-view.html
+public class TrispotView extends AbstractBlasonView {
 
-
-public class BlasonView extends AbstractBlasonView {
 	
-	float centreX;
-	float centreY;
-//	PointF centerPoint=new PointF(0,0);
+//	float centreX;
+//	float centreY;
+	//PointF centerPoint=new PointF(0,0);
+	PointF[] centers;
+
+	int[] scores = {100,10,9,8,7,6};
 	
-	int[] scores = {100,10,9,8,7,6,5,4,3,2,1};
-
-	int[] scoresimperial = {9,9,9,7,7,5,5,3,3,1,1};
-
-
-	 
-	 
-	public BlasonView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		
-		nombrezone = 10;
-		radiusCircles = new float[nombrezone+1];
-
-		colors = new int[nombrezone+1];
-		colors[0] = Color.YELLOW;
-		colors[1] = Color.YELLOW;
-		colors[2] = Color.YELLOW;
-		colors[3] = Color.RED;
-		colors[4] = Color.RED;
-		colors[5] = Color.BLUE;
-		colors[6] = Color.BLUE;
-		colors[7] = Color.BLACK;
-		colors[8] = Color.BLACK;
-		colors[9] = Color.WHITE;
-		colors[10] = Color.WHITE;
-
-
-		colorlines = new int[nombrezone+1];
-		colorlines[0] = Color.BLACK;
-		colorlines[1] = Color.BLACK;
-		colorlines[2] = Color.BLACK;
-		colorlines[3] = Color.BLACK;
-		colorlines[4] = Color.WHITE;
-		colorlines[5] = Color.WHITE;
-		colorlines[6] = Color.WHITE;
-		colorlines[7] = Color.WHITE;
-		colorlines[8] = Color.BLACK;
-		colorlines[9] = Color.BLACK;
-		colorlines[10] = Color.BLACK;
-		
-		Canvas canvas = new Canvas(bitmap);
-
-		// Circle
-		 taille = (float) Math.min(bitmap.getWidth(),bitmap.getHeight());
-		centreX=  taille  / 2;
-		centreY=  taille / 2;
-//		centerPoint.x= centreX;
-//		centerPoint.y= centreY;
-
+	void drawFace(Canvas canvas,PointF center, float taille, int zone){
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStyle(Paint.Style.FILL);
-		float x = centreX;
-		float y = centreY;
+		float x = center.x;
+		float y = center.y;
 		float radius = taille/2 ;
 		canvas.drawCircle(x, y, radius, paint);
 
@@ -115,30 +70,89 @@ public class BlasonView extends AbstractBlasonView {
 		paint.setColor(colorlines[0]);
 		paint.setStyle(Paint.Style.STROKE);
 		canvas.drawCircle(x, y, lastradius, paint);
+	}
+	
+	
+	
+	
+	public TrispotView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		nombrezone = 5;
+
+		radiusCircles = new float[nombrezone+1];
+
+		colors = new int[nombrezone+1];
+		colors[0] = Color.YELLOW;
+		colors[1] = Color.YELLOW;
+		colors[2] = Color.YELLOW;
+		colors[3] = Color.RED;
+		colors[4] = Color.RED;
+		colors[5] = Color.BLUE;
 
 
+		colorlines = new int[nombrezone+1];
+		colorlines[0] = Color.BLACK;
+		colorlines[1] = Color.BLACK;
+		colorlines[2] = Color.BLACK;
+		colorlines[3] = Color.BLACK;
+		colorlines[4] = Color.BLACK;
+		colorlines[5] = Color.WHITE;
+		
+		Canvas canvas = new Canvas(bitmap);
+		centers = new PointF[3];
+		
+		// Circle
+		float tailleMin = (float) Math.min(bitmap.getWidth(),bitmap.getHeight());
+		 taille = tailleMin;
+		 taille =  (tailleMin / 3.0f);
+		 
+		// deltaX = (tailleMin - taille / 2.0f);
+		 deltaX = 0.0f;
+		// http://stackoverflow.com/questions/18268218/change-screen-orientation-programatically-using-a-button
+//		 Display display = ((WindowManager) context.getSystemService(Service.WINDOW_SERVICE)).getDefaultDisplay();
+//		 final int orientation = display.getRotation(); 
+		 
+		// Activity.getResources().getConfiguration().orientation
+		 
+		 
+		  // OR: orientation = getRequestedOrientation(); // inside an Activity
 
+		 
+		 
+		float centreX= deltaX+  (taille / 2.0f);
+		float centreY= (taille / 2.0f);
+		for (int i =0 ; i<3;i++){
+			//3 centers
+			centers[i] = new PointF(centreX,centreY+(i*taille));
+			drawFace(canvas,centers[i],taille,i);
+
+		}
+				
+				
+		
+	
 	}
 
+	@Override
+	public Point getScoreForPoint(float ptX, float ptY) {
 
-
-
-	public Point getScoreForPoint(float ptX, float ptY){
 		Point result = new Point(0,0);
+		
+		for (int zone = 0; zone <3; zone++){
 		int x=nombrezone;
 		do {
 			float radius = radiusCircles[nombrezone-x];
-			if (pointIntoCircle(centreX,centreY,radius,ptX,ptY)) {
+			if (pointIntoCircle(centers[zone].x,centers[zone].y,radius,ptX,ptY)) {
 				result.x = scores[nombrezone-x];
+				result.y = zone;
 				return result;
 
 			}
 			x--;
 		}while (x > -1);
-
+		}
 		return result;
 	}
-
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -159,7 +173,7 @@ public class BlasonView extends AbstractBlasonView {
 		case MotionEvent.ACTION_MOVE:
 			zooming = true;
 
-			if (zoomPos.y > centreX-100){
+			if (zoomPos.y > centers[1].y-100){
 				decalageloupe = 100;
 			}else{
 				decalageloupe = -100;
@@ -186,7 +200,6 @@ public class BlasonView extends AbstractBlasonView {
 			p.set(zoomPos.x/taille,zoomPos.y/taille);
 			Point result = getScoreForPoint(zoomPos.x,zoomPos.y);
 			zone.set(result.y, 0);
-
 			delegate.managePanEnd(p,result.x,zone);
 			break; 
 		case MotionEvent.ACTION_CANCEL:
@@ -203,11 +216,7 @@ public class BlasonView extends AbstractBlasonView {
 		return true; 
 	} 
 
-
-
-
 	
-
-
+	
 	
 }
