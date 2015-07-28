@@ -65,57 +65,9 @@ public class BlasonView extends AbstractBlasonView {
 		 taille = (float) Math.min(bitmap.getWidth(),bitmap.getHeight());
 		centreX=  taille  / 2;
 		centreY=  taille / 2;
-//		centerPoint.x= centreX;
-//		centerPoint.y= centreY;
-
-		Paint paint = new Paint();
-		paint.setColor(Color.WHITE);
-		paint.setStyle(Paint.Style.FILL);
-		float x = centreX;
-		float y = centreY;
-		float radius = taille/2 ;
-		canvas.drawCircle(x, y, radius, paint);
-
-		paint.setColor(Color.BLACK);
-		paint.setStyle(Paint.Style.STROKE);
-		canvas.drawCircle(x, y, radius, paint);
-
-
-
-
-		delta = taille/nombrezone;
-		int X = nombrezone;
-		float lastradius = nombrezone;
-		do {
-			if (X != 0){
-				radiusCircles[X] = radius;
-			}
-			paint.setColor(colors[X]);
-			paint.setStyle(Paint.Style.FILL);
-			canvas.drawCircle(x, y, radius, paint);
-
-			paint.setColor(colorlines[X]);
-			paint.setStyle(Paint.Style.STROKE);
-			canvas.drawCircle(x, y, radius, paint);
-			if (X == 1){
-				lastradius = radius;
-			}
-			radius -= delta/2;
-
-			X--;
-		}while (X > -1);
-
-		lastradius -= delta/4;
-
-		radiusCircles[0] = lastradius;
-		paint.setColor(colors[0]);
-		paint.setStyle(Paint.Style.FILL);
-		canvas.drawCircle(x, y, lastradius, paint);
-
-		paint.setColor(colorlines[0]);
-		paint.setStyle(Paint.Style.STROKE);
-		canvas.drawCircle(x, y, lastradius, paint);
-
+		
+		PointF center =  new PointF(centreX,centreY);
+		drawFace(canvas,center,taille,0);
 
 
 	}
