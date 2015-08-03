@@ -7,7 +7,7 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    <string name="hello_world">WARNING, the database contains only a subset of arrow models (mainly Easton™ and CarbonExpress™ and  Only for recurve, sorry…) In any case, please ask advise before buying your bow </string>
+    <string name="hello_world">WARNING, the database contains only a subset of arrow models (mainly Easton™ and CarbonExpress™ and  Only for recurve, sorry…) In any case, please ask advise before buying your arrows </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_materiel_global">MaterielGlobalActivity</string>
     <string name="title_activity_materiel_list2">MaterielList2</string>
