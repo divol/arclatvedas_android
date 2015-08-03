@@ -32,7 +32,7 @@ public class TirSQLiteOpenHelper {
 	  public static final String TABLE_SCORES = "SCORE";
 	  public static final String COLUMN_SCORE_ID = "_id";
 	  public static final String COLUMN_SCORE_IDTIR = "idTir";
-	  public static final String COLUMN_SCORE_VOLEENUMERO = "voeenumero";
+	//  public static final String COLUMN_SCORE_VOLEENUMERO = "voeenumero";
 	  
 	  public static final String COLUMN_SCORE_FLY = "fly";
 	  public static final String COLUMN_SCORE_POINTS = "points";
@@ -82,7 +82,9 @@ public class TirSQLiteOpenHelper {
 		    	 // ajout des zones de score (mono, bi, tristop et de la position ABCD...)
 		    	 db.execSQL("ALTER TABLE " + TABLE_SCORES + " RENAME TO TempOld"+TABLE_SCORES);
 		    	 db.execSQL(DATABASE_CREATE_SCORE);
-		    	 db.execSQL("INSERT INTO " + TABLE_SCORES + " ("+COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+   ") SELECT " +COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+ " FROM TempOld"+TABLE_SCORES);
+		    	 //db.execSQL("INSERT INTO " + TABLE_SCORES + " ("+COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+   ") SELECT " +COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_VOLEENUMERO+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+ " FROM TempOld"+TABLE_SCORES);
+		    	 db.execSQL("INSERT INTO " + TABLE_SCORES + " ("+COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+   ") SELECT " +COLUMN_SCORE_ID+","+COLUMN_SCORE_IDTIR+","+COLUMN_SCORE_FLY+","+COLUMN_SCORE_POINTS+ " FROM TempOld"+TABLE_SCORES);
+
 		    	 db.execSQL("DROP TABLE TempOld"+TABLE_SCORES);
 		    	 
 		    	 
