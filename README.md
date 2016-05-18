@@ -1,5 +1,7 @@
 # arclatvedas_android
 
+!!! deprecated 
+!!! voir version  arclatvedas_androidstudio
 
 un essai de developpement d'application en android (java donc)
 
